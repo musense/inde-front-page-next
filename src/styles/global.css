@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	background: linear-gradient(to bottom,
+			transparent,
+			rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+
+
+	font-family: Verdana, sans-serif;
+	margin: auto;
+	background-color: #fff;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b {
+	color: #222;
+}
+
+a {
+	color: #3273dc;
+}
+
+nav a {
+	margin-right: 10px;
+}
+
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+
+input {
+	font-size: 16px;
+}
+
+content {
+	line-height: 1.6;
+}
+
+table {
+	width: 100%;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+code {
+	padding: 2px 5px;
+	background-color: #f2f2f2;
+}
+
+pre {
+	padding: 1rem;
+}
+
+pre>code {
+	all: unset;
+}
+
+blockquote {
+	border: 1px solid #999;
+	color: #222;
+	padding: 2px 0px 2px 20px;
+	margin: 0px;
+	font-style: italic;
+}
+
+
+@font-face {
+  font-family: Lobster-Regular;
+  src: url('/fonts/SwanseaBold-D0ox.ttf');
+}
+
+@font-face {
+  font-family: NotoSans-Medium;
+  src: url('/fonts/NotoSansSC-Medium.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('/fonts/NotoSansSC-Regular.otf');
+}
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --theme-color: #ffffff;
+
+  --theme-gold-tag: #ebbc29;
+  --theme-gold: #ffcd69;
+  --theme-dark: #343a40;
+  --theme-white: #fff;
+  --theme-text: #1b1b1b;
+  --theme-red: #951207;
+
+  --theme-font-3l: 58px;
+  --theme-font-2l: 42px;
+  --theme-font-lg: 38px;
+  --theme-font-md: 36.5px;
+  --theme-font-sm: 25px;
+  --theme-font-2s: 21px;
+  --theme-font-3s: 17.5px;
+  --theme-font-4s: 13.5px;
+
+  --navbar-height: 120px;
+
+  --sm: 576px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
+  --xxl: 1400px;
+}
+/* html {
+  scroll-behavior: smooth;
+} */
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: var(--theme-color);
+}
+
+/* #topSection {
+position: absolute;
+inset: 0;
+} */
+
+#category-anchor {
+  position: absolute;
+  top: 251px;
+  left: 0;
+}
+
+.title {
+  user-select: none;
+  font-family: Lobster-Regular;
+  font-size: 60px;
+  letter-spacing: 1px;
+}
+
+a {
+  font-weight: 500;
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: NotoSans-Regular, NotoSans-Medium, Lobster-Regular;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+#nav-backdrop {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --navbar-height: 5.5rem;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next,
+  .carousel-indicators {
+    display: none;
+  }
+
+  #category-anchor {
+    top: 9rem;
+  }
+
+  .title {
+    font-family: Lobster-Regular;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    height: fit-content;
+  }
+  #nav-backdrop {
+    position: fixed;
+    inset: 0;
+    display: none;
+  }
+  #nav-backdrop.active {
+    display: block;
+  }
+}

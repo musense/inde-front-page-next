@@ -1,0 +1,18 @@
+.navbar-logo {
+  width: 100%;
+  height: 66px;
+  background-image: url(./../assets/img/logo.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+  .navbar-logo {
+    background-image: url(/assets/img/mobile/logo.png);
+    width: 60vw;
+    margin: 0 auto;
+  }
+}

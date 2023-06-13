@@ -1,0 +1,41 @@
+.index-fixed-background {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.index-fixed-background::before,
+.index-fixed-background::after {
+    content          : "";
+    position         : absolute;
+    background-image : url(./../../assets/img/footer/flower.png);
+    /* background-image : url(/assets/img/footer/flower.png); */
+    background-size  : contain;
+    background-repeat: no-repeat;
+    display          : block;
+    width            : 944px;
+    height           : 944px;
+}
+
+.index-fixed-background::before {
+    top: 711px;
+    left: -240px;
+}
+
+.index-fixed-background::after {
+    top: 1790px;
+    right: -240px;
+}
+
+.index-decoration-image-wrapper {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .index-fixed-background{
+        display: none;
+    }
+    .index-decoration-image-wrapper {
+        display: block;
+    }
+}

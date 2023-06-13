@@ -1,0 +1,46 @@
+.navButton {
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 23px;
+    color: var(--theme-text);
+
+
+}
+
+.navButton.active,
+.navButton:hover {
+    text-decoration: none;
+    color: var(--theme-gold);
+}
+
+@media screen and (max-width: 768px) {
+    .navButton {
+        font-size: 1.5rem;
+        position: relative;
+        color: var(--theme-color);
+    }
+
+    .navButton.active,
+    .navButton:hover {
+        text-decoration: none;
+    }
+
+    .navButton.active {
+        color: var(--theme-gold);
+    }
+
+    .navButton::after {
+        content: "";
+        position: absolute;
+        display: block;
+        background-image: url(/assets/img/mobile/index/jewelry.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 10vw;
+        height: 3vw;
+        bottom: -1.6rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,61 @@
+.image-wrapper {
+  width: 100vw;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: lightblue; */
+}
+
+.image {
+  display: block;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.line {
+  height: 50px;
+  background-image: url(./../../assets/img/category/line.png);
+  /* margin: 60px auto 69px; */
+}
+
+.thin-line {
+  height: 25px;
+  background-image: url(./../../assets/img/category/thin-line.png);
+  /* margin: 60px auto 69px; */
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+  .image-wrapper {
+    width: 100%;
+    /* padding: 0 2rem; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .image {
+    background-size: contain;
+  }
+
+  .line,
+  .thin-line {
+    width: 87vw;
+    height: 1.6rem;
+    margin: 0 auto;
+  }
+
+  .line {
+    background-image: url(./../../assets/img/mobile/category/line.png);
+  }
+
+  .thin-line {
+    background-image: url(./../../assets/img/mobile/index/thin-line.png);
+  }
+
+}
