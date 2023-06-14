@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./darkFooter.module.css";
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
+import { useAppContext } from '@store/context';
 
 function Footer() {
+  const { state, dispatch } = useAppContext();
   // console.log("🚀 ~ file: DarkFooter.jsx:10 ~ DarkFooter ~ pathname:", pathname)
 
   const footerClassName = (pathname) => {
@@ -43,7 +45,7 @@ function Footer() {
   const [footerClass, setFooterClass] = useState(null);
   const [copyrightClass, setCopyrightClass] = useState(null);
   useEffect(() => {
-    const pathname = localStorage.getItem("pathname");
+    const pathname = state.pathname;
     console.log("🚀 ~ file: DarkFooter.jsx:27 ~ DarkFooter ~ pathname:", pathname)
     setFooterClass(footerClassName(pathname))
     setCopyrightClass(copyrightClassName(pathname))

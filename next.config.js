@@ -15,7 +15,10 @@ const nextConfig = {
                 pathname: '/vi/**',
             },
         ]
-    }
+    },
+    compiler: {
+        removeConsole: process.env.NODE_ENV === 'production',
+    },
 }
 
 module.exports = nextConfig

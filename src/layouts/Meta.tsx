@@ -4,8 +4,9 @@ import { NextSeo } from 'next-seo';
 import { AppConfig } from '@utils/AppConfig';
 
 type IMetaProps = {
-  title: string;
+  title      : string;
   description: string;
+  keywords   : string;
   canonical?: string;
 };
 
@@ -51,8 +52,9 @@ const Meta = (props: IMetaProps) => {
         />
       </Head>
       <NextSeo
-        title={props.title}
-        description={props.description}
+        title       = {props.title}
+        description = {props.description}
+        // keywords    = {props.keywords}
         canonical={props.canonical}
         openGraph={{
           type: 'website',

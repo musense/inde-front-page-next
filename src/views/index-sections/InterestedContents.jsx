@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styles from './interestedContents.module.css';
 import ContentPageConnect from './ContentPageConnect';
+import { useAppContext } from '@store/context';
 
 export default function InterestedContents({ interestedContents }) {
+  const { state } = useAppContext();
 
-  const [clientWidth, setClientWidth] = useState(null);
+  const clientWidth = state.clientWidth
   const [viewInterestedContents, setViewInterestedContents] = useState(null);
   console.log("🚀 ~ file: InterestedContents.jsx:9 ~ InterestedContents ~ viewInterestedContents:", viewInterestedContents)
 
   useEffect(() => {
 
-    setClientWidth(localStorage.getItem('clientWidth'));
     if (interestedContents && interestedContents.length > 0) {
       console.log("🚀 ~ file ContentPage.jsx:129 ~ useEffect ~ interestedContents:", interestedContents)
       if (clientWidth > 768) {

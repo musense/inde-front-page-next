@@ -3,9 +3,8 @@ import type {
   GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next';
-import type { NextPageWithLayout } from '../_app';
 import { Meta } from '@layouts/Meta';
-import { Main } from '@templates/Main';
+import { Main } from '@components/Main/Main';
 import CommonPage from '@components/commonPage/commonPage';
 import ContentPage from '@views/index-sections/ContentPage';
 
@@ -27,23 +26,27 @@ import {
   getTagList,
   getTagSitemapUrls,
 } from '@assets/js/tagContents';
+import IndexView from '@components/IndexView/IndexView';
 type CategoryProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Page: NextPageWithLayout = ({
+const Page = ({
   mainTitle,
   commonPageItems,
   mainContent,
   relatedArticles,
   titleContents,
   sitemapUrl,
+  meta,
 }: CategoryProps) => {
-  return sitemapUrl ? (
+  console.log('🚀 ~ file: index.tsx:41 ~ meta:', meta);
+
+  const page = sitemapUrl ? (
     sitemapUrl.indexOf('p_') !== -1 ? (
       <ContentPage
-        category        = {mainTitle}
-        mainContent     = {mainContent}
-        relatedArticles = {relatedArticles}
-        titleContents   = {titleContents}
+        category={mainTitle}
+        mainContent={mainContent}
+        relatedArticles={relatedArticles}
+        titleContents={titleContents}
       />
     ) : sitemapUrl.indexOf('tag_') !== -1 ? (
       <CommonPage
@@ -56,7 +59,25 @@ const Page: NextPageWithLayout = ({
         commonPageItems={commonPageItems}
       />
     )
-  ) : null;
+  ) : (
+    <IndexView />
+  );
+
+  return (
+    sitemapUrl && (
+      <Main
+        meta={
+          <Meta
+            title={meta.headTitle}
+            description={meta.headDescription}
+            keywords={meta.headKeyword}
+          />
+        }
+      >
+        {page}
+      </Main>
+    )
+  );
 };
 
 export default Page;
@@ -123,6 +144,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         relatedArticles: relatedArticles,
         titleContents: titleContents,
         sitemapUrl: sitemapUrl,
+        meta: mainContent,
       },
       revalidate: 10,
     };
@@ -149,6 +171,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         relatedArticles: '',
         titleContents: '',
         sitemapUrl: sitemapUrl,
+        meta: categoryInfo,
       },
       revalidate: 10,
     };
@@ -185,6 +208,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         relatedArticles: '',
         titleContents: '',
         sitemapUrl: sitemapUrl,
+        meta: tagInfo,
       },
       revalidate: 10,
     };
@@ -197,8 +221,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       mainContent: '',
       relatedArticles: '',
       titleContents: '',
-      sitemapUrl: undefined,
+      sitemapUrl: null,
+      meta: '',
     },
+    revalidate: 10,
   };
 };
 
@@ -227,19 +253,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: 'blocking',
   };
-};
-
-Page.getLayout = function getLayout(page: React.ReactElement) {
-  return (
-    <Main
-      meta={
-        <Meta
-          title='Zoonobet'
-          description='Zoonobet'
-        />
-      }
-    >
-      {page}
-    </Main>
-  );
 };

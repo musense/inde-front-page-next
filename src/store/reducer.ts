@@ -18,6 +18,8 @@ const mainReducer = (
     state: StateProps,
     action: ReducerAction
 ) => {
+    const { type, payload } = action
+    console.log("🚀 ~ file: reducer.ts:22 ~ payload:", payload)
     switch (action.type) {
         case ReducerActionEnum.SET_WINDOW_SIZE:
             return {

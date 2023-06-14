@@ -17,7 +17,7 @@
 
 /* .navbar.hide {
   --navbar-height: -153px;
-  top: calc(var(--navbar-height) - 5px - 3px);
+  top: calc(var(--navbar-height) - 5px s- 3px);
 } */
 
 .navbar.show {

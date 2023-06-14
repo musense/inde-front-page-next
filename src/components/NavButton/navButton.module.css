@@ -33,7 +33,7 @@
         content: "";
         position: absolute;
         display: block;
-        background-image: url(./../assets/img/mobile/index/jewelry.png);
+        background-image: url(./../../assets/img/mobile/index/jewelry.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;

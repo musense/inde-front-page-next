@@ -6,6 +6,7 @@ import styles from './indexView.module.css';
 import IndexDecorationImage from '@components/IndexDecorationImage/IndexDecorationImage';
 import { animateScroll as scroll } from 'react-scroll';
 import { getCategoryList } from '@assets/js/categoryContents';
+import { useAppContext } from '@store/context';
 
 import Lottery from '@assets/img/index/image_1.png';
 import Sports from '@assets/img/index/image_2.png';
@@ -27,8 +28,8 @@ const indexViewBlockItems = [
     article: `Sports betting is an immensely popular activity in India, with cricket, football, hockey, volleyball, basketball, and badminton being the most commonly wagered-on sports. The excitement never stops as there is always another event to look forward to. In India, cricket is an integral part of daily life! The allure of sports betting lies in the opportunity ...`,
   },
   {
-    title: 'Poker',
-    image: Poker,
+    title  : 'Poker',
+    image  : Poker,
     altText: 'Poker',
     article: `Poker is widely regarded as the most popular card game in the world, offering players endless hours of entertainment. From Teen Patti and Rummy to Andar Bahar, Baccarat, Blackjack, and Texas Hold'em, online casinos offer a wide variety of poker games to cater to players' preferences. The game's simplicity lies in its straightforward combinations...`,
   },
@@ -41,7 +42,8 @@ const indexViewBlockItems = [
 ];
 
 function IndexView() {
-  const [categoryList, setCategoryList] = useState<any[]>([]);
+  const { state, dispatch } = useAppContext();
+  const [categoryList, setCategoryList] = useState([]);
   async function getNavbar() {
     const payload = {
       apiUrl: process.env.NEXT_PUBLIC_SERVER_URL || '',
@@ -79,7 +81,7 @@ function IndexView() {
     });
   }, [categoryList]);
 
-  const scrollToTop = (clientWidth: string | null) => {
+  const scrollToTop = (clientWidth) => {
     if (!clientWidth) return;
 
     let top = 0;
@@ -94,9 +96,13 @@ function IndexView() {
   };
 
   useEffect(() => {
-    localStorage.setItem('categoryName', 'home');
-    const clientWidth = localStorage.getItem('clientWidth');
-    scrollToTop(clientWidth);
+    dispatch({
+      type: 'SET_CATEGORY_NAME',
+      payload: {
+        categoryName: 'home',
+      },
+    });
+    scrollToTop(state.clientWidth);
   }, []);
 
   return (
@@ -110,15 +116,16 @@ function IndexView() {
           imageType={'thin-line'}
         />
       </div>
-      {layoutBlockItems && layoutBlockItems.map((item, index) => {
-        return (
-          <IndexViewBlock
-            key={index}
-            reverse={index % 2 === 1 ? true : false}
-            viewBlock={item}
-          />
-        );
-      })}
+      {layoutBlockItems &&
+        layoutBlockItems.map((item, index) => {
+          return (
+            <IndexViewBlock
+              key={index}
+              reverse={index % 2 === 1 ? true : false}
+              viewBlock={item}
+            />
+          );
+        })}
     </>
   );
 }

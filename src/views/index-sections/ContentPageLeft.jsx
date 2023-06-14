@@ -7,18 +7,17 @@ import DecoBackground from "@components/DecoBackground/DecoBackground";
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
 import DateTimeStamp from "@components/Date/DateTimeStamp";
 import Link from "next/link";
-
+import { useAppContext } from '@store/context';
 
 function ContentPageLeft({
   content,
   prevInfo,
   nextInfo }) {
   // console.log("🚀 ~ file: ContentPageLeft.jsx:15 ~ nextInfo:", nextInfo)
+  const { state } = useAppContext();
   console.log("🚀 ~ file: ContentPageLeft.jsx:85 ~ content:", content)
-  const [clientWidth, setClientWidth] = useState(null);
-  useEffect(() => {
-    setClientWidth(localStorage.getItem("clientWidth"));
-  }, []);
+  const clientWidth = state.clientWidth
+
   const Background = useCallback(() => {
     if (clientWidth <= 768) {
       return <DecoBackground

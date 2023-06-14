@@ -33,11 +33,11 @@ const Banner = React.forwardRef(function Banner(
         {/* <a href={'https://zoobet168.com/'} target="_blank" rel="noopener noreferrer" > */}
         {/* <img src = {image} style = {{ width: '100%', objectFit: 'cover', objectPosition: 'center' }} /> */}
         <Image
-            src    = {image.src}
-            alt    = {category || ''}
-            width  = {image.width}
-            height = {image.height}
-            style  = {{
+            src={image.src}
+            alt={category || ''}
+            width={image.width}
+            height={image.height}
+            style={{
                 width: '100%',
                 objectFit: 'cover', objectPosition: 'center'
             }}

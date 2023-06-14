@@ -12,6 +12,9 @@ import Image from 'next/image'
 import mobileItemCarousel from "@assets/img/mobile/index/banner.png";
 import desktopCarousel from "@assets/img/index/banner.png";
 // console.log("🚀 ~ file: Carousel.jsx:13 ~ desktopCarousel:", desktopCarousel)
+import { useAppContext } from "@store/context";
+
+
 
 const mobileItem = {
   image: mobileItemCarousel,
@@ -27,11 +30,13 @@ const desktopItem = {
 
 
 function CarouselSection() {
-
+  const { state }   = useAppContext()
   const carouselRef = useRef(null)
+  const clientWidth = state.clientWidth
+  
+  console.log("🚀 ~ file: Carousel.jsx:34 ~ CarouselSection ~ state:", state)
   const [carouselItems, setCarouselItems] = useState(null);
   useEffect(() => {
-    const clientWidth = localStorage.getItem("clientWidth");
     if (clientWidth > 768) {
       setCarouselItems([{
         src: desktopItem.image.src,
@@ -43,7 +48,7 @@ function CarouselSection() {
         altText: mobileItem.altText,
       }])
     }
-  }, []);
+  }, [clientWidth]);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
 
@@ -85,11 +90,11 @@ function CarouselSection() {
           <a href={'https://zoobet168.com/'} className={styles.carouselAnchor} target="_blank" rel="noopener noreferrer" />
           {/* <img src  = {item.src} alt                       = {item.altText} className       = {styles.carouselImg} width = {'100%'} /> */}
           <Image
-            src       = {item.src}
-            alt       = {item.altText}
-            className = {styles.carouselImg}
-            width     = {1920}
-            height     = {300}
+            src={item.src}
+            alt={item.altText}
+            className={styles.carouselImg}
+            width={1920}
+            height={300}
           />
           {/* <div className="carousel-caption d-none d-md-block">
             <h5>{item.caption}</h5>

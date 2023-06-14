@@ -134,6 +134,15 @@
     text-decoration: underline;
 }
 
+.title-main-content h1{
+    font-size: 2.5rem;
+}
+.title-main-content h2{
+    font-size: 2rem;
+}
+.title-main-content h3{
+    font-size: 1.5rem;
+}
 .title-main-content b,
 .title-main-content strong {
     /* font-family: NotoSans-Medium; */

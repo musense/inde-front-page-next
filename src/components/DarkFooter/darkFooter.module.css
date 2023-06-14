@@ -8,7 +8,7 @@
   justify-content : space-evenly;
   box-sizing      : border-box;
   align-items     : center;
-  background-image: url(./../assets/img/footer/background.png);
+  background-image: url(./../../assets/img/footer/background.png);
   /* background-image: url(/assets/img/footer/background.png); */
   margin-top      : 60px;
   padding         : 60px 0;
@@ -36,7 +36,7 @@
 .custom-footer.category,
 .custom-footer.not-index {
   margin-top      : 83px;
-  background-image: url(./../assets/img/footer/background.png);
+  background-image: url(./../../assets/img/footer/background.png);
   /* background-image: url(/assets/img/footer/background.png); */
 }
 
@@ -46,7 +46,7 @@
   bottom: 137px;
   left: 50%;
   transform: translateX(-50%);
-  background-image: url(./../assets/img/footer/flower.png);
+  background-image: url(./../../assets/img/footer/flower.png);
   height: 944px;
   width: 944px;
   display: none;
@@ -73,7 +73,7 @@
 .footer-img {
   width: 573px;
   height: 366px;
-  background-image: url(./../assets/img/footer/image_5.png);
+  background-image: url(./../../assets/img/footer/image_5.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -121,7 +121,7 @@
   .index-footer {
     margin-top: 10rem;
     height: 24rem;
-    background-image: url(./../assets/img/mobile/index/background.png);
+    background-image: url(./../../assets/img/mobile/index/background.png);
   }
 
   .index-footer::before {
@@ -129,7 +129,7 @@
     content: "";
     position: absolute;
     display: block;
-    background-image: url(./../assets/img/mobile/index/flower.png);
+    background-image: url(./../../assets/img/mobile/index/flower.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -145,7 +145,7 @@
     content: "";
     position: absolute;
     display: block;
-    background-image: url(./../assets/img/mobile/index/deco.png);
+    background-image: url(./../../assets/img/mobile/index/deco.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -184,7 +184,7 @@
     margin: unset;
     width: 100vw;
     height: 44rem;
-    background-image: url(./../assets/img/mobile/index/background.png);
+    background-image: url(./../../assets/img/mobile/index/background.png);
     z-index: 2;
     margin-top: 2rem;
   }
@@ -195,7 +195,7 @@
     content: "";
     position: absolute;
     display: block;
-    background-image: url(./../assets/img/mobile/index/flower.png);
+    background-image: url(./../../assets/img/mobile/index/flower.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -222,7 +222,7 @@
   }
 
   .footer-img {
-    background-image: url(./../assets/img/mobile/index/partner.png);
+    background-image: url(./../../assets/img/mobile/index/partner.png);
     width: 87vw;
     height: 53vw;
     background-position: center;

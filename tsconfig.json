@@ -35,6 +35,6 @@
       "@types/*" : ["src/types/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Banner/Banner.jsx", "src/assets/js/categoryContents.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Banner/Banner.jsx", "src/assets/js/categoryContents.js", "src/store/context.ts", "src/pages/_app.jsx", "src/templates/Main.jsx", "src/templates/Main.jsx", "src/components/IndexNavbar/IndexNavbar.jsx", "src/components/IndexView/IndexView.jsx"],
   "exclude": ["node_modules"]
 }

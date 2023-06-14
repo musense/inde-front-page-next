@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev"  : "next dev",
+    "dev"  : "next dev -p 4200 -H 10.88.0.103",
     "build": "next build",
     "start": "next start",
     "lint" : "next lint",
-    "build:serve":"next build & next start"
+    "build:serve":"next build & next start -p 4200 -H 10.88.0.103"
   },
   "dependencies": {
     "@emotion/css"      : "^11.11.0",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styles from './contentPage.module.css';
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
 import ContentPageLeft from './ContentPageLeft';
@@ -7,7 +7,8 @@ import Image from 'next/image'
 
 import { animateScroll as scroll } from "react-scroll";
 import { getRenamedContent } from '../../assets/js/sitemap';
-
+import { useAppContext } from '@store/context';
+// import { useRouter } from 'next/router';
 
 const mobileItem = {
   image: import('@assets/img/mobile/index/banner.png'),
@@ -22,11 +23,12 @@ const pcItem = {
 
 
 function ContentPage({ category, mainContent, relatedArticles, titleContents }) {
+  const { state, dispatch } = useAppContext();
+  // const router = useRouter();
   console.log("🚀 ~ file: ContentPage.jsx:29 ~ ContentPage ~ mainContent:", mainContent)
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ relatedArticles:", relatedArticles)
 
-
-  const [clientWidth, setClientWidth] = useState(null);
+  const clientWidth = state.clientWidth
   const [item, setItem] = useState();
 
   const scrollToPosition = useCallback((top = 520) => {
@@ -66,17 +68,26 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents }) 
   };
 
   useEffect(() => {
-    localStorage.setItem("categoryName", category);
-    setClientWidth(localStorage.getItem('clientWidth'));
-
-    console.log("🚀 ~ file: ContentPage.jsx:122 ~ useEffect ~ mainContent:", mainContent)
-    setTheContent(mainContent);
-    findOneByIdAndReturnPrevNextID(titleContents, mainContent.serialNumber)
-    setInterestedContents(relatedArticles)
-  }, [ mainContent, relatedArticles, titleContents]);
+    dispatch({
+      type: 'SET_CATEGORY_NAME',
+      payload: {
+        categoryName: category
+      }
+    })
+  }, [category]);
+  const readEditorList = useMemo(() => {
+    return titleContents.filter(content => content.hidden === false)
+  }, [titleContents])
 
   useEffect(() => {
-    if (localStorage.getItem('last-page-pathname') && localStorage.getItem('last-page-pathname').indexOf('/p/') !== -1) {
+    setTheContent(mainContent);
+    findOneByIdAndReturnPrevNextID(readEditorList, mainContent.serialNumber)
+    setInterestedContents(relatedArticles)
+  }, [mainContent, relatedArticles, readEditorList]);
+
+  useEffect(() => {
+    console.log("🚀 ~ file: ContentPage.jsx:92 ~ useEffect ~ state.lastPathname:", state.lastPathname)
+    if (state.lastPathname && state.lastPathname.indexOf('/p_') !== -1) {
       scrollToPosition()
     } else {
       scrollToPosition(0)
@@ -97,7 +108,7 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents }) 
         title: pcItem.title,
       }))
     }
-  }, [scrollToPosition, clientWidth]);
+  }, [state, clientWidth]);
 
   return (
     <>

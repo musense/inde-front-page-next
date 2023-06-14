@@ -33,7 +33,9 @@ export async function getTitleContents(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor?limit=9999&pageNumber=1`)
     .then(res => res.data)
-    .then(res => res.data.filter(item => item.categories.name.toLowerCase() !== "uncategorized"))
+    .then(res => res.data.filter(item => item.categories.name.toLowerCase() !== "uncategorized"
+      // && item.hidden === false
+    ))
     .then(res => { console.log(res); return res })
     .then(res => res.map(content => {
       return {

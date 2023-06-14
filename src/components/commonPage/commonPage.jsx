@@ -9,13 +9,10 @@ import DecoBackground from "@components/DecoBackground/DecoBackground";
 import Banner from '@components/Banner/Banner';
 import { animateScroll as scroll } from "react-scroll";
 
-import {
-    MainContext,
-    // MainDispatchContext
-} from "@store/context";
+import { useAppContext } from '@store/context';
 
 function CommonPage({ paramName, commonPageItems }) {
-
+    const { state, dispatch } = useAppContext();
     // const state = useContext(MainContext);
 
     console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
@@ -23,7 +20,8 @@ function CommonPage({ paramName, commonPageItems }) {
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [clientWidth, setClientWidth] = useState();
+    // const [clientWidth, setClientWidth] = useState(state.clientWidth);
+    const clientWidth = state.clientWidth
 
     const Background = useCallback(({ showOn }) => {
 
@@ -87,23 +85,29 @@ function CommonPage({ paramName, commonPageItems }) {
     // const [viewContents, setViewContents] = useState(null);
     const [totalPages, setTotalPages] = useState(1);
 
+    useEffect(() => {
+        dispatch({
+            type: 'SET_CATEGORY_NAME',
+            payload: {
+                categoryName: paramName
+            }
+        })
+    }, [paramName]);
 
+    const showData = useMemo(() => {
+        return commonPageItems.filter(content => content.hidden === false)
+    }, [commonPageItems])
 
     useEffect(() => {
-        const width = window.innerWidth ||
-            document.documentElement.clientWidth ||
-            document.body.clientWidth;
-        setClientWidth(width);
-        setCurrentPage(parseInt(localStorage.getItem('currentPage')) || 1)
-        localStorage.setItem("categoryName", paramName);
-        if (commonPageItems === null) return
-        let showData = []
 
-        showData = [...commonPageItems.filter(content => content.hidden === false)]
+        setCurrentPage(1)
+
+        if (showData === null) return
+
         setAllContent(showData);
         setTotalPages(Math.ceil(showData.length / 6));
 
-    }, [commonPageItems, paramName]);
+    }, [showData]);
 
     useEffect(() => {
         if (!paramName) return
