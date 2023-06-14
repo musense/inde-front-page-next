@@ -1,4 +1,3 @@
-import '@styles/globals.css'
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next'
 import React from 'react';

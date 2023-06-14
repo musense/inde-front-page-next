@@ -5,11 +5,7 @@ import Link from 'next/link';
 import IndexView from '@components/IndexView/IndexView';
 
 const Home: NextPageWithLayout = () => {
-  return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-72'>
-      <IndexView      />
-    </main>
-  );
+  return <IndexView />;
 };
 
 export default Home;

@@ -4,11 +4,13 @@ import ContentPageConnect from './ContentPageConnect';
 
 export default function InterestedContents({ interestedContents }) {
 
-  const clientWidth = localStorage.getItem('clientWidth');
+  const [clientWidth, setClientWidth] = useState(null);
   const [viewInterestedContents, setViewInterestedContents] = useState(null);
   console.log("🚀 ~ file: InterestedContents.jsx:9 ~ InterestedContents ~ viewInterestedContents:", viewInterestedContents)
 
   useEffect(() => {
+
+    setClientWidth(localStorage.getItem('clientWidth'));
     if (interestedContents && interestedContents.length > 0) {
       console.log("🚀 ~ file ContentPage.jsx:129 ~ useEffect ~ interestedContents:", interestedContents)
       if (clientWidth > 768) {

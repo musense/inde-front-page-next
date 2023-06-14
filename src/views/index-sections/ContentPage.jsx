@@ -3,12 +3,8 @@ import styles from './contentPage.module.css';
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
 import ContentPageLeft from './ContentPageLeft';
 import InterestedContents from '@views/index-sections/InterestedContents';
+import Image from 'next/image'
 
-import {
-  getTitleContentsByID,
-  getRelatedArticles,
-  getTitleContents,
-} from '@assets/js/titleContents';
 import { animateScroll as scroll } from "react-scroll";
 import { getRenamedContent } from '../../assets/js/sitemap';
 
@@ -25,13 +21,12 @@ const pcItem = {
 };
 
 
-function ContentPage({ category, mainContent, relatedArticles, titleContents, id, apiUrl }) {
+function ContentPage({ category, mainContent, relatedArticles, titleContents }) {
   console.log("🚀 ~ file: ContentPage.jsx:29 ~ ContentPage ~ mainContent:", mainContent)
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ relatedArticles:", relatedArticles)
 
-  localStorage.setItem("categoryName", mainContent.categories.name);
-  const clientWidth = localStorage.getItem('clientWidth');
 
+  const [clientWidth, setClientWidth] = useState(null);
   const [item, setItem] = useState();
 
   const scrollToPosition = useCallback((top = 520) => {
@@ -59,7 +54,7 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents, id
       sitemapUrl: getRenamedContent(content.sitemapUrl),
       title: content.title,
     })
-    //* basically, the bigger the serialNumber is, the newer the editor is
+
     const theIndex = arr.findIndex(a => a.serialNumber === serialNumber)
     const prevContent = theIndex === arr.length - 1 ? null : arr[theIndex + 1]
     const nextContent = theIndex === 0 ? null : arr[theIndex - 1]
@@ -71,47 +66,14 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents, id
   };
 
   useEffect(() => {
-    const payload = {
-      _id: id,
-      apiUrl: apiUrl,
-    };
-    // let theContent = null;
-    // setTheContent(mainContent);
-    // theContent = mainContent
-    // findOneByIdAndReturnPrevNextID(titleContents, theContent.serialNumber)
-    // setInterestedContents(relatedArticles)
-    getTitleContentsByID(payload)
-      .then(newMainContent => {
-        let theContent = null;
-        if (JSON.stringify(newMainContent) !== JSON.stringify(mainContent)) {
-          setTheContent(newMainContent);
-          theContent = newMainContent
-        } else {
-          setTheContent(mainContent);
-          theContent = mainContent
-        }
-        return theContent
-      })
-      .then((theContent) =>
-        getTitleContents(payload)
-          .then(newTitleContents => {
-            if (JSON.stringify(newTitleContents) !== JSON.stringify(titleContents)) {
-              findOneByIdAndReturnPrevNextID(newTitleContents, theContent.serialNumber)
-            } else {
-              findOneByIdAndReturnPrevNextID(titleContents, theContent.serialNumber)
-            }
-          })
-      )
-    getRelatedArticles(payload)
-      .then(newRelatedArticles => {
-        if (JSON.stringify(newRelatedArticles) !== JSON.stringify(relatedArticles)) {
-          setInterestedContents(newRelatedArticles)
-        } else {
-          setInterestedContents(relatedArticles)
-        }
-      });
+    localStorage.setItem("categoryName", category);
+    setClientWidth(localStorage.getItem('clientWidth'));
 
-  }, [id, apiUrl]);
+    console.log("🚀 ~ file: ContentPage.jsx:122 ~ useEffect ~ mainContent:", mainContent)
+    setTheContent(mainContent);
+    findOneByIdAndReturnPrevNextID(titleContents, mainContent.serialNumber)
+    setInterestedContents(relatedArticles)
+  }, [ mainContent, relatedArticles, titleContents]);
 
   useEffect(() => {
     if (localStorage.getItem('last-page-pathname') && localStorage.getItem('last-page-pathname').indexOf('/p/') !== -1) {
@@ -142,7 +104,14 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents, id
       {item && (
         <div className={`section ${styles.section}`}>
           <a href={'https://zoobet168.com/'} target="_blank" rel="noopener noreferrer" />
-          <img src={item.src} alt={item.altText} title={item.title} width={'100%'} />
+          {/* <img src={item.src} alt={item.altText} title={item.title} width={'100%'} /> */}
+          <Image
+            src={item.src}
+            alt={item.altText}
+            title={item.title}
+            width={1920}
+            height={300}
+          />
         </div>)
       }
 

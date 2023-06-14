@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./contentPage.module.css";
 import NavigateContainer from "@components/NavigateContainer/NavigateContainer";
+import Image from 'next/image'
 
-function ContentPageConnect({ contents}) {
+function ContentPageConnect({ contents }) {
 
     return (contents.map((content, index) => {
         console.log("🚀 ~ file ContentPageConnect.jsx:8 ~ return ~ content:", content)
@@ -16,11 +17,16 @@ function ContentPageConnect({ contents}) {
                 customClassName={"connect-flex-box"}
                 category={content.categories.name}
                 sitemapUrl={content.sitemapUrl}
-                >
+            >
 
                 <div className={styles['connect-image']}>
 
-                    <img width='100%' height='100%' src={content.homeImagePath} alt={content.altText} />
+                    {/* <img width = '100%' height = '100%' src = {content.homeImagePath} alt = {content.altText} /> */}
+                    <Image
+                        width  = {300}
+                        height = {300}
+                        src    = {content.homeImagePath}
+                        alt    = {content.altText} />
                 </div>
                 <div className={styles['connect-title']}>
                     {content.title}

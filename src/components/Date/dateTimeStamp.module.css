@@ -1,0 +1,25 @@
+.title-main-date {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    letter-spacing: 1px;
+    font-family: NotoSans-Regular;
+    font-size: 20px;
+    color: grey;
+}
+
+.create-date {
+    position: relative;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+    .title-main-date {
+        font-size: 1rem;
+        justify-content: flex-start;
+    }
+
+}

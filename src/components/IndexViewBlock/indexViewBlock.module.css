@@ -1,79 +1,81 @@
 .index-paragraph-wrapper {
-    position: relative;
-    display: flex;
-    /* flex-direction: row; */
-    flex-wrap: nowrap;
+    position       : relative;
+    display        : flex;
+    flex-wrap      : nowrap;
     justify-content: space-between;
-    width: 1100px;
-    height: fit-content;
-    align-items: center;
-    /* background-color: lightgrey; */
-    margin: 0 auto;
+    width          : 1100px;
+    height         : fit-content;
+    align-items    : center;
+    margin         : 0 auto;
 }
 
 .index-type-image {
-    width: 572px;
+    width : 572px;
     height: 366px;
 }
 
+.index-type-image>img {
+    width : 100%;
+    height: 100%;
+}
+
 .index-type-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position       : relative;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
     justify-content: space-evenly;
-    height: 570px;
+    height         : 570px;
 }
 
 .index-type-title {
-    color: var(--theme-gold);
-    text-align: center;
+    color      : var(--theme-gold);
+    text-align : center;
     line-height: 1;
 }
 
 .index-type-article {
-    width: 489px;
-    height: 261px;
-    font-family: NotoSans-Regular;
-    font-size: 20px;
-    line-height: 1.5;
+    width         : 489px;
+    height        : 261px;
+    font-family   : NotoSans-Regular;
+    font-size     : 20px;
+    line-height   : 1.5;
     letter-spacing: 2px;
-    color: var(--theme-text);
+    color         : var(--theme-text);
 }
 
 .index-more-btn {
-    position: relative;
-    width: 172px;
-    height: 56px;
-    background-image: url(./../../assets/img/index/more.png);
-    background-size: contain;
+    position         : relative;
+    width            : 172px;
+    height           : 56px;
+    background-image : url(./../../assets/img/index/more.png);
+    background-size  : contain;
     background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 768px) {
     .index-paragraph-wrapper {
-        --index-paragraph-background-size: 90vw;
+        --index-paragraph-background-size  : 90vw;
         --index-paragraph-background-offset: -6rem;
-        position: relative;
-        flex-direction: column-reverse !important;
-        width: 100vw;
-        margin-bottom: 4rem;
-        gap: 0;
+        position                           : relative;
+        flex-direction                     : column-reverse !important;
+        width                              : 100vw;
+        margin-bottom                      : 4rem;
+        gap                                : 0;
     }
 
     .index-paragraph-wrapper::before {
-        content: "";
-        position: absolute;
-        display: block;
-        background-image: url(./../../assets/img/mobile/index/flower.png);
-        background-size: contain;
-        background-repeat: no-repeat;
+        content            : "";
+        position           : absolute;
+        display            : block;
+        background-image   : url(./../../assets/img/mobile/index/flower.png);
+        background-size    : contain;
+        background-repeat  : no-repeat;
         background-position: center;
-        width: var(--index-paragraph-background-size);
-        height: var(--index-paragraph-background-size);
-        /* background-color: grey; */
-        top: 10rem;
-        right: var(--index-paragraph-background-offset);
+        width              : var(--index-paragraph-background-size);
+        height             : var(--index-paragraph-background-size);
+        top                : 10rem;
+        right              : var(--index-paragraph-background-offset);
     }
 
     .index-paragraph-wrapper.reverse::before {
@@ -81,24 +83,23 @@
     }
 
     .index-paragraph-wrapper::after {
-        content: "";
-        position: absolute;
-        display: block;
-        background-image: url(./../../assets/img/mobile/index/deco.png);
-        background-size: contain;
-        background-repeat: no-repeat;
+        content            : "";
+        position           : absolute;
+        display            : block;
+        background-image   : url(./../../assets/img/mobile/index/deco.png);
+        background-size    : contain;
+        background-repeat  : no-repeat;
         background-position: center;
-        width: 23vw;
-        height: 5vw;
-        /* background-color: grey; */
-        bottom: -2.5rem;
-        left: 50%;
-        transform: translateX(-50%);
+        width              : 23vw;
+        height             : 5vw;
+        bottom             : -2.5rem;
+        left               : 50%;
+        transform          : translateX(-50%);
     }
 
 
     .index-type-image {
-        width: 87vw;
+        width : 87vw;
         height: unset;
     }
 
@@ -108,7 +109,7 @@
 
     .index-type-container {
         height: fit-content;
-        gap: 2rem;
+        gap   : 2rem;
         margin: 2rem 0;
     }
 
@@ -117,15 +118,15 @@
     }
 
     .index-type-article {
-        width: unset;
-        height: unset;
-        color: var(--theme-red);
+        width    : unset;
+        height   : unset;
+        color    : var(--theme-red);
         font-size: 1rem;
-        padding: 0 2rem;
+        padding  : 0 2rem;
     }
 
     .index-more-btn {
-        width: 33vw;
+        width : 33vw;
         height: 11vw;
     }
 }

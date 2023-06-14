@@ -50,7 +50,8 @@ export async function getTitleContents(payload) {
           _id: content.categories._id,
           name: content.categories.name,
           sitemapUrl: getRenamedContent(content.categories.sitemapUrl)
-        }
+        },
+        sitemapUrl: getRenamedContent(content.sitemapUrl),
       }
     }))
   // .then(res => { console.log(res); return res })

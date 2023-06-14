@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './indexViewBlock.module.css';
-// import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image'
 
 export default function IndexViewBlock({ viewBlock, reverse = false }) {
-console.log("🚀 ~ file: IndexViewBlock.jsx:6 ~ IndexViewBlock ~ viewBlock:", viewBlock)
+    console.log("🚀 ~ file: IndexViewBlock.jsx:6 ~ IndexViewBlock ~ viewBlock:", viewBlock)
 
 
     // title={item.title}
@@ -14,7 +15,13 @@ console.log("🚀 ~ file: IndexViewBlock.jsx:6 ~ IndexViewBlock ~ viewBlock:", v
     return <div style={reverse ? { flexDirection: 'row-reverse' } : { flexDirection: 'row' }}
         className={`${styles['index-paragraph-wrapper']} ${reverse ? styles['reverse'] : ''}`}>
         <div className={styles['index-type-image']}>
-            <img src={viewBlock.image.src} alt={viewBlock.altText} />
+            {/* <img src={viewBlock.image.src} alt={viewBlock.altText} /> */}
+            <Image
+                src={viewBlock.image.src}
+                alt={viewBlock.altText}
+                width={300}
+                height={300}
+            />
         </div>
         <div className={styles['index-type-container']}>
             <div className={`${styles['index-type-title']} title`}>
@@ -23,7 +30,7 @@ console.log("🚀 ~ file: IndexViewBlock.jsx:6 ~ IndexViewBlock ~ viewBlock:", v
             <div className={styles['index-type-article']}>
                 {viewBlock.article}
             </div>
-            <a href={`/${viewBlock.sitemapUrl}`} className={styles['index-more-btn']} />
+            <Link href={`/${viewBlock.sitemapUrl}`} className={styles['index-more-btn']} />
         </div>
     </div>;
 }

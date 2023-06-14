@@ -79,7 +79,7 @@ function IndexView() {
     });
   }, [categoryList]);
 
-  const scrollToTop = (clientWidth) => {
+  const scrollToTop = (clientWidth: string | null) => {
     if (!clientWidth) return;
 
     let top = 0;

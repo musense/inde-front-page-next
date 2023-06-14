@@ -23,8 +23,9 @@ export async function getTagList(payload) {
         .then(res => res.map(tag => {
             return {
                 ...tag,
-                headTitle: tag.headTitle && tag.headTitle.length > 0
-                    ? tag.headTitle : tag.name
+                  headTitle    : tag.headTitle && tag.headTitle.length > 0
+                                    ? tag.headTitle: tag.name,
+                  sitemapUrl   : getRenamedContent(tag.sitemapUrl)
             }
         }))
     console.log("🚀 ~ file: tagContents.js:7 ~ getTagList ~ response:", response)

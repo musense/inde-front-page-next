@@ -120,7 +120,7 @@
   align-items: center;
 } */
 
-.title-mainImage {
+/* .title-mainImage {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -139,7 +139,7 @@
   width: 2px;
   height: 159px;
   background-image: url('./../../assets/img/hot_line.png');
-}
+} */
 
 /* 
 .title-wrapper {
@@ -222,7 +222,7 @@
     filter: drop-shadow(0 6px 4px rgba(0 0 0/0.5));
   }
 
-  .connect-image>img {}
+  /* .connect-image>img {} */
 
   .connect-title {
     text-align: left;
@@ -264,7 +264,7 @@
     align-items: center;
   } */
 
-  .title-mainImage {
+  /* .title-mainImage {
     width: 100%;
     height: auto;
   }
@@ -277,7 +277,7 @@
     width: 2px;
     height: 159px;
     background-image: url('./../../assets/img/hot_line.png');
-  }
+  } */
 
 
   .title-wrapper {

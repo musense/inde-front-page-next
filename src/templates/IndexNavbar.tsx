@@ -22,15 +22,18 @@ function IndexNavbar() {
   const hamburgerRef = useRef<HTMLInputElement>(null);
   const [active, setActive] = useState(false);
 
-  const stopPropagationAndToggleHamburger = useCallback((e) => {
+  const stopPropagationAndToggleHamburger = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("🚀 ~ file: IndexNavbar.tsx:31 ~ stopPropagationAndToggleHamburger ~ e:", e)
     e.stopPropagation();
-    toggleHamburger(e);
+    
+      toggleHamburger(e);
+   
   }, []);
   const unCheck = useCallback(() => {
     const hamburgerCheck = hamburgerRef.current!;
     setActive(false);
     hamburgerCheck.checked = false;
-  }, [active]);
+  }, []);
   async function getNavbar() {
     const payload = {
       apiUrl: process.env.NEXT_PUBLIC_SERVER_URL || '',
@@ -47,30 +50,12 @@ function IndexNavbar() {
         '🚀 ~ file: IndexNavbar.tsx:48 ~ useEffect ~ navbar:',
         navbar
       );
-      setCategoryList(navbar)
+      setCategoryList(navbar);
     };
     getNavbarAsync().catch(console.error);
   }, []);
-  // const categoryList = useMemo<Promise<any[]>>(() => getNavbar(), []);
 
-  // useEffect(async () => {
-  //   const categoryList = await getNavbar();
-  //   setCategoryList(categoryList);
-  // }, []);
 
-  useEffect(() => {
-    const clientWidth =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-    const pathname = window.location.pathname;
-    setLastPagePathnameInLocalStorage();
-    // setTimeout(() => {
-    setClientWidthInLocalStorage(clientWidth);
-    setPathnameInLocalStorage(pathname);
-
-    // }, 0)
-  }, []);
   useEffect(() => {
     const clientWidth = localStorage.getItem(
       'clientWidth'
@@ -79,22 +64,22 @@ function IndexNavbar() {
       if (hamburgerRef.current == null && navRef.current === null) {
         return;
       } else {
-        hamburgerRef.current?.addEventListener(
-          'click',
-          stopPropagationAndToggleHamburger,
-          false
-        );
-        hamburgerRef.current?.addEventListener(
-          'touchstart',
-          stopPropagationAndToggleHamburger,
-          false
-        );
+        // hamburgerRef.current?.addEventListener(
+        //   'click',
+        //   stopPropagationAndToggleHamburger,
+        //   false
+        // );
+        // hamburgerRef.current?.addEventListener(
+        //   'touchstart',
+        //   stopPropagationAndToggleHamburger,
+        //   false
+        // );
       }
     }
   }, [hamburgerRef]);
 
   const toggleHamburger = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const active = e?.target?.checked || false
+    const active = e?.target?.checked || false;
     console.log('Clicked, new value = ' + e.target.checked);
     setActive(active);
   };
@@ -127,40 +112,7 @@ function IndexNavbar() {
 
 export default IndexNavbar;
 
-function setClientWidthInLocalStorage(clientWidth) {
-  if (
-    !(
-      localStorage.getItem('clientWidth') &&
-      localStorage.getItem('clientWidth') == clientWidth
-    )
-  ) {
-    localStorage.setItem('clientWidth', clientWidth);
-  }
-}
 
-function setPathnameInLocalStorage(pathname: string) {
-  if (!pathname) return;
-  if (
-    !(
-      localStorage.getItem('pathname') &&
-      localStorage.getItem('pathname') == pathname
-    )
-  ) {
-    pathname = window.location.pathname;
-    localStorage.setItem('pathname', window.location.pathname);
-  }
-}
-
-function setLastPagePathnameInLocalStorage() {
-  const lastPagePathname = localStorage.getItem('pathname');
-  console.log(
-    '🚀 ~ file: IndexNavbar.jsx:91 ~ setPathnameInLocalStorage ~ lastPagePathname:',
-    lastPagePathname
-  );
-  if (lastPagePathname) {
-    localStorage.setItem('last-page-pathname', lastPagePathname);
-  }
-}
 
 function setCategoryNameInLocalStorageAndReturn(pathname: string) {
   if (!pathname) return;
@@ -206,12 +158,12 @@ function NavWrapper({
   navRef,
   categoryList,
 }: {
-  active      : boolean;
-  zIndex      : number;
-  navRef      : any;
+  active: boolean;
+  zIndex: number;
+  navRef: any;
   categoryList: any[];
 }) {
-  console.log("🚀 ~ file: IndexNavbar.tsx:214 ~ categoryList:", categoryList)
+  console.log('🚀 ~ file: IndexNavbar.tsx:214 ~ categoryList:', categoryList);
   // const selectedCategory = localStorage.getItem("categoryName")
   // useEffect(() => {
   //   const pathname = localStorage.getItem("pathname")
@@ -226,11 +178,14 @@ function NavWrapper({
   // }, []);
   const [selectedCategoryName, setSelectedCategoryName] = useState(null);
   categoryList = [{ name: 'home', sitemapUrl: '' }, ...categoryList];
-  const navHandler = useCallback((e) => {
-    console.log(e.type);
-    e.preventDefault();
-  }, []);
-  const liHandler = (e) => {
+  const navHandler = useCallback(
+    (e: { type: any; preventDefault: () => void }) => {
+      console.log(e.type);
+      e.preventDefault();
+    },
+    []
+  );
+  const liHandler = (e: { stopPropagation: () => void }) => {
     console.log(e);
     e.stopPropagation();
   };
@@ -243,11 +198,15 @@ function NavWrapper({
       navRef.current.addEventListener('scroll', navHandler);
       navRef.current.addEventListener('touchmove', navHandler);
       const liList = navRef.current.querySelectorAll('li');
-      liList.forEach((li) => {
-        li.addEventListener('touchstart', liHandler);
-      });
+      liList.forEach(
+        (li: {
+          addEventListener: (arg0: string, arg1: (e: any) => void) => void;
+        }) => {
+          li.addEventListener('touchstart', liHandler);
+        }
+      );
     }
-  }, [navRef.current]);
+  }, [navHandler, navRef]);
 
   const activeStyle = active ? 'active' : '';
   return (

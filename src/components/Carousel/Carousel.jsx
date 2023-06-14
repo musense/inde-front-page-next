@@ -7,6 +7,7 @@ import {
   CarouselIndicators,
   CarouselControl
 } from "reactstrap";
+import Image from 'next/image'
 
 import mobileItemCarousel from "@assets/img/mobile/index/banner.png";
 import desktopCarousel from "@assets/img/index/banner.png";
@@ -82,7 +83,14 @@ function CarouselSection() {
           className={styles.carouselItem}
         >
           <a href={'https://zoobet168.com/'} className={styles.carouselAnchor} target="_blank" rel="noopener noreferrer" />
-          <img src={item.src} alt={item.altText} className={styles.carouselImg} width={'100%'} />
+          {/* <img src  = {item.src} alt                       = {item.altText} className       = {styles.carouselImg} width = {'100%'} /> */}
+          <Image
+            src       = {item.src}
+            alt       = {item.altText}
+            className = {styles.carouselImg}
+            width     = {1920}
+            height     = {300}
+          />
           {/* <div className="carousel-caption d-none d-md-block">
             <h5>{item.caption}</h5>
           </div> */}

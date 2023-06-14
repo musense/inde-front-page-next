@@ -32,8 +32,9 @@
       "@styles/*"    : ["src/styles/*"],
       "@utils/*"     : ["src/utils/*"],
       "@templates/*" : ["src/templates/*"],
+      "@types/*" : ["src/types/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Banner/Banner.jsx", "src/assets/js/categoryContents.js"],
   "exclude": ["node_modules"]
 }

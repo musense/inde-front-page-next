@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import Tag from "@components/Tag/Tag";
 // import { Link } from "react-router-dom";
 import GoToContentPage from "@components/page/goToContentPage";
@@ -6,6 +6,7 @@ import styles from './contentPageLeft.module.css'
 import DecoBackground from "@components/DecoBackground/DecoBackground";
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
 import DateTimeStamp from "@components/Date/DateTimeStamp";
+import Link from "next/link";
 
 
 function ContentPageLeft({
@@ -14,8 +15,10 @@ function ContentPageLeft({
   nextInfo }) {
   // console.log("🚀 ~ file: ContentPageLeft.jsx:15 ~ nextInfo:", nextInfo)
   console.log("🚀 ~ file: ContentPageLeft.jsx:85 ~ content:", content)
-  const clientWidth = localStorage.getItem("clientWidth");
-
+  const [clientWidth, setClientWidth] = useState(null);
+  useEffect(() => {
+    setClientWidth(localStorage.getItem("clientWidth"));
+  }, []);
   const Background = useCallback(() => {
     if (clientWidth <= 768) {
       return <DecoBackground
@@ -42,10 +45,12 @@ function ContentPageLeft({
       <div className={styles['left-content']}>
 
 
-        <div className={styles['title-view']}>
-          <a id='contentPage-return-button' className={styles['main-title-decoration']}
-            href={`/${content.categories.sitemapUrl}`}>Return</a>
-          <div className={styles['contentPageLeft-decoration-image-wrapper']}>
+        <div  className = {styles['title-view']}>
+        <Link
+             id        = 'contentPage-return-button'
+             className = {styles['main-title-decoration']}
+             href      = {`/${content.categories.sitemapUrl}`}>Return</Link>
+        <div className = {styles['contentPageLeft-decoration-image-wrapper']}>
             <IndexDecorationImage
               marginTop={'2rem'}
               marginBottom={'2rem'}

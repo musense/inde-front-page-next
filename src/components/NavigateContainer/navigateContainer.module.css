@@ -1,0 +1,13 @@
+.title-container {
+    display: flex;
+    /* flex-direction: row; */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 39px;
+    cursor: pointer;
+    /* min-width: 481px; */
+    height: -moz-fit-content;
+    width: fit-content;
+    max-width: 379px;
+    justify-content: space-between;
+  }

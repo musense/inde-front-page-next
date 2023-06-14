@@ -60,11 +60,11 @@
 
 
 .connect-flex-site button.prev {
-  background-image: url(/assets/img/index/prev.png);
+  background-image: url(./../../assets/img/index/prev.png);
 }
 
 .connect-flex-site button.next {
-  background-image: url(/assets/img/index/next.png);
+  background-image: url(./../../assets/img/index/next.png);
 }
 
 .connect-flex-site button:hover {
@@ -140,11 +140,11 @@
 
 
   .connect-flex-site button.prev {
-    background-image: url(/assets/img/index/prev.png);
+    background-image: url(./../../assets/img/index/prev.png);
   }
 
   .connect-flex-site button.next {
-    background-image: url(/assets/img/index/next.png);
+    background-image: url(./../../assets/img/index/next.png);
   }
 
   .connect-flex-site button:hover {

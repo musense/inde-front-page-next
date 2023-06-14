@@ -43,7 +43,7 @@
     top: 0;
     left: 0;
     display: block;
-    background-image: url(/assets/img/content/return.png);
+    background-image: url(./../../assets/img/content/return.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 41px;
@@ -152,13 +152,14 @@
     filter: drop-shadow(0 4px 1px rgb(229, 164, 60));
 }
 
-.title-main-content img {
-    max-width: 100%;
-}
+/* .title-main-content img {
+    width: 300px;
+    height: 300px;
+} */
 
 .play-now {
     --play-now-size: 150px;
-    background-image: url(/assets/img/content/playNow.gif);
+    background-image: url(./../../assets/img/content/playNow.gif);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -235,7 +236,7 @@
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
-    background-image: url('/assets/img/content/tag_deco.png');
+    background-image: url(./../../assets/img/content/tag_deco.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 31px;
@@ -348,7 +349,7 @@
         content: "";
         display: block;
         position: absolute;
-        background-image: url(/assets/img/mobile/index/deco.png);
+        background-image: url(./../../assets/img/mobile/index/deco.png);
         /* background-color: grey; */
         background-size: contain;
         background-repeat: no-repeat;
@@ -365,7 +366,7 @@
         content: "";
         display: block;
         position: absolute;
-        background-image: url(/assets/img/mobile/index/deco.png);
+        background-image: url(./../../assets/img/mobile/index/deco.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
@@ -405,7 +406,7 @@
         content: "";
         display: block;
         position: absolute;
-        background-image: url(/assets/img/mobile/index/deco.png);
+        background-image: url(./../../assets/img/mobile/index/deco.png);
         /* background-color: grey; */
         background-size: contain;
         background-repeat: no-repeat;
@@ -444,7 +445,7 @@
 
     .content-tags>div:first-child::before,
     .content-tags>div:first-child::after {
-        background-image: url('/assets/img/mobile/content/tag_deco.png');
+        background-image: url(./../../assets/img/mobile/content/tag_deco.png);
         width: 1.5rem;
         height: 1.5rem;
     }

@@ -1,0 +1,25 @@
+.trend-tags-flex-tags {
+    white-space: nowrap;
+    line-height: 1;
+    color: var(--theme-red);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: var(--theme-font-3s);
+}
+
+.trend-tags-flex-tags:hover {
+    text-decoration: none;
+    color: var(--theme-red);
+}
+
+@media screen and (max-width: 768px) {
+    .trend-tags-flex-tags {
+        font-size: 1rem;
+        color: var(--theme-text);
+    }
+    
+    .trend-tags-flex-tags:hover {
+        text-decoration: none;
+        color: var(--theme-text);
+    }
+}
