@@ -8,12 +8,12 @@ export default function InterestedContents({ interestedContents }) {
 
   const clientWidth = state.clientWidth
   const [viewInterestedContents, setViewInterestedContents] = useState(null);
-  console.log("🚀 ~ file: InterestedContents.jsx:9 ~ InterestedContents ~ viewInterestedContents:", viewInterestedContents)
+  // console.log("🚀 ~ file: InterestedContents.jsx:9 ~ InterestedContents ~ viewInterestedContents:", viewInterestedContents)
 
   useEffect(() => {
 
     if (interestedContents && interestedContents.length > 0) {
-      console.log("🚀 ~ file ContentPage.jsx:129 ~ useEffect ~ interestedContents:", interestedContents)
+      // console.log("🚀 ~ file ContentPage.jsx:129 ~ useEffect ~ interestedContents:", interestedContents)
       if (clientWidth > 768) {
         setViewInterestedContents(interestedContents.slice(0, 3))
       } else {
@@ -29,8 +29,8 @@ export default function InterestedContents({ interestedContents }) {
     const start = interestedContents.findIndex(c => c._id == viewInterestedContents[0]._id) + parseInt(e.target.value),
       end = interestedContents.findIndex(c => c._id == viewInterestedContents[0]._id) + 3 + parseInt(e.target.value);
 
-    console.log("🚀 ~ file ContentPage.jsx:94 ~ onInterestedBtnClick ~ start:", start)
-    console.log("🚀 ~ file ContentPage.jsx:94 ~ onInterestedBtnClick ~ end:", end)
+    // console.log("🚀 ~ file ContentPage.jsx:94 ~ onInterestedBtnClick ~ start:", start)
+    // console.log("🚀 ~ file ContentPage.jsx:94 ~ onInterestedBtnClick ~ end:", end)
     setViewInterestedContents(interestedContents.slice(start, end))
   }
 

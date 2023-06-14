@@ -6,7 +6,7 @@ import Image from 'next/image'
 function ContentPageConnect({ contents }) {
 
     return (contents.map((content, index) => {
-        console.log("🚀 ~ file ContentPageConnect.jsx:8 ~ return ~ content:", content)
+        // console.log("🚀 ~ file ContentPageConnect.jsx:8 ~ return ~ content:", content)
 
         return (
             <NavigateContainer

@@ -21,8 +21,8 @@ const PageTemplate = ({
     const nextPage = useCallback(() => {
         setCurrentPage(page => page + 1)
     }, [setCurrentPage])
-    console.log("🚀 ~ file pageTemplate.jsx:16 ~ currentPage:", currentPage)
-    console.log("🚀 ~ file pageTemplate.jsx:16 ~ Math.ceil(maxShowNumbers / 2):", Math.ceil(maxShowNumbers / 2))
+    // console.log("🚀 ~ file pageTemplate.jsx:16 ~ currentPage:", currentPage)
+    // console.log("🚀 ~ file pageTemplate.jsx:16 ~ Math.ceil(maxShowNumbers / 2):", Math.ceil(maxShowNumbers / 2))
 
     const showArray = useMemo(() => {
         const array = Array.from(Array(maxShowNumbers), (_, index) => index - Math.floor(maxShowNumbers / 2))
@@ -71,7 +71,7 @@ export default PageTemplate
 
 function AnchorButton({ cb, styles, label, index = null }) {
     const router = useRouter()
-    console.log("🚀 ~ file: pageTemplate.jsx:75 ~ AnchorButton ~ router:", router)
+    // console.log("🚀 ~ file: pageTemplate.jsx:75 ~ AnchorButton ~ router:", router)
     if (index === null) {
         return (<Link onClick={cb}
             href={`${router.query.sitemapUrl}#category-anchor`}

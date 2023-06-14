@@ -6,12 +6,13 @@ import {
 
 
 const initialState: StateProps = {
-    clientWidth: 0,
+    clientWidth : 0,
     clientHeight: 0,
-    contents: '',
+    contents    : '',
     categoryName: '',
-    pathname: '',
+    pathname    : '',
     lastPathname: '',
+    active      : false,
 }
 
 const mainReducer = (
@@ -42,10 +43,15 @@ const mainReducer = (
                 ...state,
                 pathname: action.payload.pathname,
             };
-        case ReducerActionEnum.SET_LAST_PATHNAME:
+        case ReducerActionEnum.SET_LAST_PATHNAME: 
             return {
                 ...state,
                 lastPathname: action.payload.lastPathname,
+            };
+        case ReducerActionEnum.SET_NAVBAR_ACTIVE_STATUS:
+            return {
+                ...state,
+                active: action.payload.active,
             };
         default:
             throw Error('Unknown action: ' + action.type);

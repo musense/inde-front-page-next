@@ -86,7 +86,7 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents }) 
   }, [mainContent, relatedArticles, readEditorList]);
 
   useEffect(() => {
-    console.log("🚀 ~ file: ContentPage.jsx:92 ~ useEffect ~ state.lastPathname:", state.lastPathname)
+    // console.log("🚀 ~ file: ContentPage.jsx:92 ~ useEffect ~ state.lastPathname:", state.lastPathname)
     if (state.lastPathname && state.lastPathname.indexOf('/p_') !== -1) {
       scrollToPosition()
     } else {

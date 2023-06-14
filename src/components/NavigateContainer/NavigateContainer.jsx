@@ -11,7 +11,7 @@ function NavigateContainer({
     index,
     styles,
     customClassName = "title-container" }) {
-    console.log("🚀 ~ file: NavigateContainer.jsx:13 ~ sitemapUrl:", sitemapUrl)
+    // console.log("🚀 ~ file: NavigateContainer.jsx:13 ~ sitemapUrl:", sitemapUrl)
     // console.log("🚀 ~ file: NavigateContainer.jsx:12 ~ id:", id)
     const router = useRouter();
     if (styles === null || styles === '' || styles === undefined) {

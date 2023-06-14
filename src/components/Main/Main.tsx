@@ -1,7 +1,6 @@
-import { useEffect, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import Footer from '@components/DarkFooter/DarkFooter';
 import Navbar from '@components/IndexNavbar/IndexNavbar';
-import { Context } from '@store/context';
 
 type IMainProps = {
   meta: ReactNode;
@@ -9,9 +8,7 @@ type IMainProps = {
 };
 
 function Main({ meta, children }: IMainProps) {
-  useEffect(() => {
-    const pathname = window.location.pathname;
-  }, []);
+
   return (
     // <Context>
       <div className='w-full px-1 text-gray-700 antialiased'>

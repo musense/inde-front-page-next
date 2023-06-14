@@ -68,10 +68,10 @@ function IndexView() {
   const layoutBlockItems = useMemo(() => {
     if (categoryList.length === 0) return;
     return indexViewBlockItems.map((item) => {
-      console.log(
-        '🚀 ~ file: IndexView.tsx:67 ~ layoutBlockItems ~ categoryList:',
-        categoryList
-      );
+      // console.log(
+      //   '🚀 ~ file: IndexView.tsx:67 ~ layoutBlockItems ~ categoryList:',
+      //   categoryList
+      // );
       return {
         ...item,
         sitemapUrl: categoryList.find(

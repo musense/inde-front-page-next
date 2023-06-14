@@ -4,7 +4,7 @@ import Link from "next/link";
 // import { Link } from "react-router-dom";
 
 function Tag({ tag }) {
-    console.log("🚀 ~ file Tag.js:6 ~ Tag ~ tag", tag)
+    // console.log("🚀 ~ file Tag.js:6 ~ Tag ~ tag", tag)
     return (<Link
         href={`/${tag.sitemapUrl}`}
         className={styles['trend-tags-flex-tags']}

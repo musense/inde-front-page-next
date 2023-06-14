@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './logo.module.css';
 import Link from 'next/link';
+import { useAppContext } from '@store/context';
 
-export default function Logo({
-  active,
-  zIndex,
-}: {
-  active: boolean;
-  zIndex: number;
-}) {
+export default function Logo({ active: a, zIndex }) {
+  const { state } = useAppContext();
+  const active = state.active
   const [prevState, setPrevState] = useState(true);
   useEffect(() => {
     if (active) {
@@ -20,6 +17,7 @@ export default function Logo({
   return prevState ? (
     <Link
       href={'/'}
+      title="back to home"
       target='_self'
       style={{
         zIndex: zIndex,

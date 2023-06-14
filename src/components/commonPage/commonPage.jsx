@@ -15,8 +15,8 @@ function CommonPage({ paramName, commonPageItems }) {
     const { state, dispatch } = useAppContext();
     // const state = useContext(MainContext);
 
-    console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
-    console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
+    // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
+    // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -66,7 +66,7 @@ function CommonPage({ paramName, commonPageItems }) {
     }, [])
 
     const scrollToPosition = useCallback((top = 250) => {
-        console.log("🚀 ~ file: commonPage.jsx:71 ~ scrollToPosition ~ top:", top)
+        // console.log("🚀 ~ file: commonPage.jsx:71 ~ scrollToPosition ~ top:", top)
         if (!clientWidth) return
         if (clientWidth <= 768)
             top = 80
@@ -80,7 +80,7 @@ function CommonPage({ paramName, commonPageItems }) {
 
     const bannerRef = useRef()
 
-    console.log("🚀 ~ file: commonPage.jsx:74 ~ CommonPage ~ currentPage:", currentPage)
+    // console.log("🚀 ~ file: commonPage.jsx:74 ~ CommonPage ~ currentPage:", currentPage)
     const [__ALL_CONTENT__, setAllContent] = useState(null);
     // const [viewContents, setViewContents] = useState(null);
     const [totalPages, setTotalPages] = useState(1);
@@ -121,8 +121,8 @@ function CommonPage({ paramName, commonPageItems }) {
 
     const viewContents = useMemo(() => {
         if (__ALL_CONTENT__) {
-            console.log("🚀 ~ file: commonPage.jsx:97 ~ viewContents ~ __ALL_CONTENT__:", __ALL_CONTENT__)
-            console.log("🚀 ~ file: commonPage.jsx:97 ~ viewContents ~ currentPage:", currentPage)
+            // console.log("🚀 ~ file: commonPage.jsx:97 ~ viewContents ~ __ALL_CONTENT__:", __ALL_CONTENT__)
+            // console.log("🚀 ~ file: commonPage.jsx:97 ~ viewContents ~ currentPage:", currentPage)
             const start = 0 + (currentPage - 1) * 6,
                 end = currentPage * 6;
             const viewContents = __ALL_CONTENT__
@@ -131,7 +131,7 @@ function CommonPage({ paramName, commonPageItems }) {
         }
         return []
     }, [__ALL_CONTENT__, currentPage])
-    console.log("🚀 ~ file: commonPage.jsx:169 ~ viewContents ~ viewContents:", viewContents)
+    // console.log("🚀 ~ file: commonPage.jsx:169 ~ viewContents ~ viewContents:", viewContents)
 
     const Page = useCallback(() => {
         if (clientWidth <= 768) {

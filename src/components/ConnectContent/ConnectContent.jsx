@@ -6,7 +6,7 @@ import NavigateContainer from "@components/NavigateContainer/NavigateContainer";
 import Image from 'next/image'
 
 function ConnectContent({ index, content, item1 = null, category }) {
-    console.log("🚀 ~ file ConnectContent.jsx:20 ~ ConnectContent ~ content:", content)
+    // console.log("🚀 ~ file ConnectContent.jsx:20 ~ ConnectContent ~ content:", content)
 
     const imgStyle = {
         width: "100%",

@@ -12,7 +12,7 @@
 @media screen and (max-width: 768px) {
   .navbar-logo {
     background-image: url(./../../assets/img/mobile/logo.png);
-    /* width: 60vw; */
+    width: 60vw;
     height: 10vw;
     background-position: center;
     margin: 5.6vw auto 0;

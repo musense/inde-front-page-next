@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -16,7 +17,10 @@ import NavBackDrop from '@components/NavBackDrop/NavBackDrop';
 import { getCategoryList } from '@assets/js/categoryContents';
 
 import { useAppContext } from '@store/context';
+import { ReducerActionEnum } from "@store/types";
+
 import { useRouter } from 'next/router';
+import { document } from 'postcss';
 
 function IndexNavbar() {
   const { state, dispatch } = useAppContext();
@@ -72,8 +76,14 @@ function IndexNavbar() {
   );
   const unCheck = useCallback(() => {
     const hamburgerCheck = hamburgerRef.current;
-    setActive(false);
     hamburgerCheck.checked = false;
+    setActive(false);
+    // dispatch({
+    //   type: ReducerActionEnum.SET_NAVBAR_ACTIVE_STATUS,
+    //   payload: {
+    //     active: false,
+    //   },
+    // })
   }, []);
   async function getNavbar() {
     const payload = {
@@ -120,6 +130,12 @@ function IndexNavbar() {
     const active = e?.target?.checked || false;
     console.log('Clicked, new value = ' + e.target.checked);
     setActive(active);
+    // dispatch({
+    //   type: ReducerActionEnum.SET_NAVBAR_ACTIVE_STATUS,
+    //   payload: {
+    //     active: active,
+    //   },
+    // })
   };
 
   return (
@@ -136,6 +152,7 @@ function IndexNavbar() {
       <NavWrapper
         active={active}
         navRef={navRef}
+        unCheck={unCheck}
         zIndex={3}
         categoryList={categoryList}
       />
@@ -166,35 +183,38 @@ function Header({ children }) {
 function NavWrapper({
   active,
   zIndex,
+  unCheck,
   navRef,
   categoryList,
 }) {
-  console.log('🚀 ~ file: IndexNavbar.tsx:214 ~ categoryList:', categoryList);
+  console.log('🚀 ~ file: IndexNavbar.tsx:172 ~ categoryList:', categoryList);
 
   categoryList = [{ name: 'home', sitemapUrl: '' }, ...categoryList];
-  const navHandler = useCallback(
-    (e) => {
-      console.log(e.type);
-      e.preventDefault();
-    },
-    []
-  );
-  const liHandler = (e) => {
-    console.log(e);
+
+  const navHandler = useCallback((e) => {
+    console.log("🚀🚀🚀🚀🚀 ~ navRef ~ e.type:", e.type)
+    e.preventDefault();
+  }, []);
+
+  const linkHandler = useCallback((e) => {
+    console.log("🚀🚀🚀🚀🚀 ~ link ~ e.type:", e.type);
     e.stopPropagation();
-  };
-  useEffect(() => {
+  }, []);
+
+    // useEffect(() => {
+  useLayoutEffect(() => {
     if (navRef.current === null) {
       return;
     } else {
-      navRef.current.addEventListener('touchstart', navHandler);
+      // navRef.current.addEventListener('touchstart', navHandler);
       navRef.current.addEventListener('wheel', navHandler);
       navRef.current.addEventListener('scroll', navHandler);
       navRef.current.addEventListener('touchmove', navHandler);
-      const liList = navRef.current.querySelectorAll('li');
-      liList.forEach(
-        (li) => {
-          li.addEventListener('touchstart', liHandler);
+      const linkList = navRef.current.querySelectorAll('a');
+      linkList.forEach(
+        (link) => {
+          console.log("🚀 ~ file: IndexNavbar.jsx:221 ~ useEffect ~ link:", link)
+          link.addEventListener('touchstart', linkHandler);
         }
       );
     }
@@ -202,20 +222,22 @@ function NavWrapper({
 
   const activeStyle = active ? 'active' : '';
   return (
-    <Nav
+    <div
+      ref={navRef}
       style={{ zIndex: zIndex }}
-      className={`${styles['nav-btn-wrapper']} ${styles[activeStyle]}`}
-    >
-      <div ref={navRef}>
+      className={`${styles['nav-btn-wrapper']} ${styles[activeStyle]}`}>
+      <Nav
+      >
         {categoryList.map((category, index) => {
           return (
             <NavButton
-              key={index}
+              key = {index}
+              unCheck={unCheck}
               category={category}
             />
           );
         })}
-      </div>
-    </Nav>
+      </Nav>
+    </div>
   );
 }
