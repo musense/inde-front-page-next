@@ -19,7 +19,6 @@ import { useAppContext } from '@store/context';
 import { ReducerActionEnum } from "@store/types";
 
 import { useRouter } from 'next/router';
-import { document } from 'postcss';
 
 function IndexNavbar() {
   const { state, dispatch } = useAppContext();
