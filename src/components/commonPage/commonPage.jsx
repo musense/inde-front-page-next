@@ -98,14 +98,12 @@ function CommonPage({ paramName, commonPageItems }) {
 
     const showData = useMemo(() => {
         if (paramName.indexOf("#") !== -1) {
-            console.log("🚀 ~ file: commonPage.jsx:102 ~ showData ~ commonPageItems:", commonPageItems)
             return commonPageItems.filter(content => content.hidden === false
                 && navItems.includes(content.categories.name)
-            )
+            ).sort((item1, item2) => new Date(item2.createdAt) - new Date(item1.createdAt));
         } else {
             return commonPageItems.filter(content => content.hidden === false
-
-            )
+            ).sort((item1, item2) => new Date(item2.createdAt) - new Date(item1.createdAt));
         }
     }, [commonPageItems, paramName])
 
