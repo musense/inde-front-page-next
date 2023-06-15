@@ -44,12 +44,12 @@ function ContentPageLeft({
       <div className={styles['left-content']}>
 
 
-        <div  className = {styles['title-view']}>
-        <Link
-             id        = 'contentPage-return-button'
-             className = {styles['main-title-decoration']}
-             href      = {`/${content.categories.sitemapUrl}`}>Return</Link>
-        <div className = {styles['contentPageLeft-decoration-image-wrapper']}>
+        <div className={styles['title-view']}>
+          <Link
+            id='contentPage-return-button'
+            className={styles['main-title-decoration']}
+            href={`/${content.categories.sitemapUrl}`}>Return</Link>
+          <div className={styles['contentPageLeft-decoration-image-wrapper']}>
             <IndexDecorationImage
               marginTop={'2rem'}
               marginBottom={'2rem'}
@@ -58,41 +58,11 @@ function ContentPageLeft({
           <h1 className={`${styles['main-title']} title`}>{content.title}</h1>
           <DateTimeStamp date={content.createdAt} />
         </div>
-        <div className={styles['main-content']}>
-          <div>
-            <div>
-              <div
-                className={styles['title-main-content']}
-                dangerouslySetInnerHTML={{ __html: content.htmlContent }}
-              />
-              <a className={styles['play-now']}
-                href="https://www.zoobetin.com/?al=00034"
-                target="_blank"
-                rel="noopener noreferrer"
-              />
-            </div>
-            {(prevInfo || nextInfo) && <GoToContentPage
-              prevInfo={prevInfo}
-              nextInfo={nextInfo}
-            />}
-          </div>
-
-          <div className={styles['content-side']}>
-            <a href={'https://zoobet168.com/'} target="_blank" rel="noopener noreferrer" >
-              <div className={styles['content-advertise']} />
-            </a>
-            <div className={styles['content-tags']}>
-              <div>Tag</div>
-              <div>
-                {content.tags.length > 0 && content.tags.map((tag, index) =>
-                  <Tag key={index} tag={tag} />
-                )}
-
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <MainContent
+          content={content}
+          prevInfo={prevInfo}
+          nextInfo={nextInfo}
+        />
 
       </div>
     </div>
@@ -101,3 +71,30 @@ function ContentPageLeft({
 
 export default ContentPageLeft;
 
+function MainContent(props) {
+  return (<div className={styles['main-content']}>
+    <div>
+      <div>
+        <div className={styles['title-main-content']} dangerouslySetInnerHTML={{
+          __html: props.content.htmlContent
+        }} />
+        <a className={styles['play-now']} href="https://www.zoobetin.com/?al=00034" target="_blank" rel="noopener noreferrer" />
+      </div>
+      {(props.prevInfo || props.nextInfo) && <GoToContentPage prevInfo={props.prevInfo} nextInfo={props.nextInfo} />}
+    </div>
+
+    <div className={styles['content-side']}>
+      <a href={'https://zoobet168.com/'} target="_blank" rel="noopener noreferrer">
+        <div className={styles['content-advertise']} />
+      </a>
+      <div className={styles['content-tags']}>
+        <div>Tag</div>
+        <div>
+          {props.content.tags.length > 0 && props.content.tags.map((tag, index) => <Tag key={index} tag={tag} />)}
+
+        </div>
+      </div>
+    </div>
+
+  </div>);
+}

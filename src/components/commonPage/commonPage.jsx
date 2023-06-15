@@ -61,19 +61,19 @@ function CommonPage({ paramName, commonPageItems }) {
 
     const scrollToTop = useCallback(() => {
         scroll.scrollTo(0, {
-            duration: 500,
+            duration: 0,
             delay: 0,
             smooth: "easeInOutQuart",
         });
     }, [])
 
     const scrollToPosition = useCallback((top = 250) => {
-        // console.log("🚀 ~ file: commonPage.jsx:71 ~ scrollToPosition ~ top:", top)
+        console.log("🚀 ~ file: commonPage.jsx:71 ~ scrollToPosition ~ top:", top)
         if (!clientWidth) return
         if (clientWidth <= 768)
             top = 80
         scroll.scrollTo(top, {
-            duration: 100,
+            duration: 1,
             delay: 0,
             smooth: false,
             // smooth: "easeInOutQuart",
@@ -128,7 +128,7 @@ function CommonPage({ paramName, commonPageItems }) {
         } else {
             scrollToPosition()
         }
-    }, [paramName, scrollToPosition, scrollToTop, clientWidth]);
+    }, [paramName]);
 
     const viewContents = useMemo(() => {
         if (__ALL_CONTENT__) {

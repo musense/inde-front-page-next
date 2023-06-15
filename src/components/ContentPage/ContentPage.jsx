@@ -42,7 +42,7 @@ function ContentPage({
     if (clientWidth <= 768)
       top = top === 0 ? top : 250
     scroll.scrollTo(top, {
-      duration: 100,
+      duration: 0,
       delay: 0,
       smooth: false,
     });
