@@ -25,28 +25,20 @@ function ConnectContent({ index, content, item1 = null, category }) {
             sitemapUrl={content.sitemapUrl}
         >
             <div className={styles['title-mainImage']}>
-
-                {/* <img src   = {content.homeImagePath} alt = {content.altText}
-                     style = {{
-                        width         : "100%",
-                        height        : "100%",
-                        objectFit     : "cover",
-                        objectPosition: "50% 50%",
-                    }} /> */}
                 {content.homeImagePath !== "undefined" ?
                     <Image
-                        src    = {content.homeImagePath}
-                        alt    = {content.altText || content.title}
-                        width  = {300}
-                        height = {300}
-                        style  = {imgStyle}
+                        src={content.homeImagePath}
+                        alt={content.altText || content.title}
+                        width={300}
+                        height={300}
+                        style={imgStyle}
                     /> :
                     <img
                         // src={content.homeImagePath}
-                        alt    = {content.title}
-                        width  = {300}
-                        height = {300}
-                        style  = {imgStyle}
+                        alt={content.title}
+                        width={300}
+                        height={300}
+                        style={imgStyle}
                     />
                 }
             </div>
@@ -57,18 +49,7 @@ function ConnectContent({ index, content, item1 = null, category }) {
                 >
                     {decodeURIComponent(content.title)}
                 </div>
-                {/* <DateTimeStamp date={content.createdAt} /> */}
-
                 <div className={styles['connect-btn']} />
-                {/* <div
-                    className={`${styles.content}`}
-                    dangerouslySetInnerHTML={{ __html: content.content }}
-                /> */}
-                {/* <div className={styles['title-tags']}>
-                    {content.tags.length !== 0 && content.tags.map((tagName, index) =>
-                        <Tag key={index} tagName={tagName} />
-                    )}
-                </div> */}
             </div>
         </NavigateContainer>
     );

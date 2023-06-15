@@ -28,8 +28,8 @@ const indexViewBlockItems = [
     article: `Sports betting is an immensely popular activity in India, with cricket, football, hockey, volleyball, basketball, and badminton being the most commonly wagered-on sports. The excitement never stops as there is always another event to look forward to. In India, cricket is an integral part of daily life! The allure of sports betting lies in the opportunity ...`,
   },
   {
-    title  : 'Poker',
-    image  : Poker,
+    title: 'Poker',
+    image: Poker,
     altText: 'Poker',
     article: `Poker is widely regarded as the most popular card game in the world, offering players endless hours of entertainment. From Teen Patti and Rummy to Andar Bahar, Baccarat, Blackjack, and Texas Hold'em, online casinos offer a wide variety of poker games to cater to players' preferences. The game's simplicity lies in its straightforward combinations...`,
   },
@@ -103,7 +103,7 @@ function IndexView() {
       },
     });
     scrollToTop(state.clientWidth);
-  }, []);
+  }, [dispatch, state.clientWidth]);
 
   return (
     <>

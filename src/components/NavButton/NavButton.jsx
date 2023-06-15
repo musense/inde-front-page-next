@@ -15,7 +15,7 @@ export default function NavButton({ category, unCheck = null }) {
     const clickHandler = useCallback(() => {
         router.push(`/${sitemapUrl}`)
         unCheck && unCheck()
-    }, [unCheck])
+    }, [router, sitemapUrl, unCheck])
 
     return (
         <NavItem>

@@ -25,7 +25,7 @@ export default function NavBackDrop({
       navBackdropRef.current.addEventListener('wheel', navBackdropHandler);
       navBackdropRef.current.addEventListener('scroll', navBackdropHandler);
     }
-  }, [navBackdropRef]);
+  }, [navBackdropRef, navBackdropHandler]);
 
   return (
     <div

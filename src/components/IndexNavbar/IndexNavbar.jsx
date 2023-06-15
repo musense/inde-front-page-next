@@ -37,7 +37,7 @@ function IndexNavbar() {
         pathname: router.asPath,
       },
     });
-  }, [router.asPath]);
+  }, [router.asPath, dispatch, state.pathname]);
   useEffect(() => {
     if (state.clientWidth === 0) {
       dispatch({
@@ -54,7 +54,7 @@ function IndexNavbar() {
         },
       });
     }
-  }, []);
+  }, [dispatch, state.clientWidth]);
   const [categoryList, setCategoryList] = useState([]);
   const navRef = useRef(null);
   const hamburgerRef = useRef(null);
@@ -129,7 +129,7 @@ function IndexNavbar() {
         );
       }
     }
-  }, [hamburgerRef]);
+  }, [hamburgerRef, state.clientWidth, stopPropagationAndToggleHamburger]);
 
   const toggleHamburger = (e) => {
     const active = e?.target?.checked || false;
@@ -222,7 +222,7 @@ function NavWrapper({
         }
       );
     }
-  }, [navHandler, navRef]);
+  }, [navHandler, linkHandler, navRef]);
 
   const activeStyle = active ? 'active' : '';
   return (

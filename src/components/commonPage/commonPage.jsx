@@ -94,7 +94,7 @@ function CommonPage({ paramName, commonPageItems }) {
                 categoryName: paramName
             }
         })
-    }, [paramName]);
+    }, [paramName, dispatch]);
 
     const showData = useMemo(() => {
         if (paramName.indexOf("#") !== -1) {
@@ -126,7 +126,7 @@ function CommonPage({ paramName, commonPageItems }) {
         } else {
             scrollToPosition()
         }
-    }, [paramName]);
+    }, [paramName, scrollToTop, scrollToPosition]);
 
     const viewContents = useMemo(() => {
         if (__ALL_CONTENT__) {

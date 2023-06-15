@@ -80,18 +80,18 @@ function ContentPage({
         categoryName: category
       }
     })
-  }, [category]);
+  }, [category, dispatch]);
 
   const filteredTitleContents = useMemo(() => {
     return titleContents.filter(content => content.hidden === false
       && content.categories.name.toLowerCase() !== 'uncategorized'
-      )
+    )
   }, [titleContents])
 
   useEffect(() => {
-    const filteredRelatedArticles = relatedArticles.filter(article => article.hidden === false 
+    const filteredRelatedArticles = relatedArticles.filter(article => article.hidden === false
       && article.categories.name.toLowerCase() !== 'uncategorized'
-      )
+    )
     setTheContent(mainContent);
     findOneByIdAndReturnPrevNextID(filteredTitleContents, mainContent.serialNumber)
     setInterestedContents(filteredRelatedArticles)
@@ -120,7 +120,7 @@ function ContentPage({
         title: pcItem.title,
       }))
     }
-  }, [state, clientWidth]);
+  }, [state, clientWidth, scrollToPosition]);
 
   return (
     <>
