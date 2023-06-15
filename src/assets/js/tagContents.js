@@ -23,9 +23,9 @@ export async function getTagList(payload) {
         .then(res => res.map(tag => {
             return {
                 ...tag,
-                  headTitle    : tag.headTitle && tag.headTitle.length > 0
-                                    ? tag.headTitle: tag.name,
-                  sitemapUrl   : getRenamedContent(tag.sitemapUrl)
+                headTitle: tag.headTitle && tag.headTitle.length > 0
+                    ? tag.headTitle : tag.name,
+                sitemapUrl: getRenamedContent(tag.sitemapUrl)
             }
         }))
     console.log("🚀 ~ file: tagContents.js:7 ~ getTagList ~ response:", response)
@@ -37,6 +37,12 @@ export async function getTagInfo(payload) {
     const { tagName, apiUrl } = payload
     const response = await instance(apiUrl).get(`/tags/${tagName}`)
         .then(res => res.data)
+        .then(tag => ({
+            ...tag,
+            headTitle: tag.headTitle && tag.headTitle.length > 0
+                ? tag.headTitle : tag.name,
+        }
+        ))
 
     // console.log("🚀 ~ file: tagContents.js:19 ~ getTagInfo ~ response:", response)
 

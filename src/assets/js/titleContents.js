@@ -34,7 +34,7 @@ export async function getTitleContents(payload) {
   const response = await instance(apiUrl).get(`/editor?limit=9999&pageNumber=1`)
     .then(res => res.data.data)
     // .then(res => res.data.filter(item => item.categories.name.toLowerCase() !== "uncategorized"
-      // && item.hidden === false
+    // && item.hidden === false
     // ))
     .then(res => { console.log(res); return res })
     .then(res => res.map(content => {
@@ -79,6 +79,12 @@ export async function getCategoryInfo(payload) {
   const { categoryName, apiUrl } = payload
   const response = await instance(apiUrl).get(`/category/${categoryName}`)
     .then(res => res.data)
+    .then(category => ({
+      ...category,
+      headTitle: category.headTitle && category.headTitle.length > 0
+        ? category.headTitle : category.name,
+    })
+    )
   // console.log("🚀 ~ file: titleContents.js:31 ~ getCategoryInfo ~ response:", response)
   return response
 }
