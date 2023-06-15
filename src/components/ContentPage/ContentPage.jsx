@@ -22,11 +22,17 @@ const pcItem = {
 };
 
 
-function ContentPage({ category, mainContent, relatedArticles, titleContents }) {
+function ContentPage({
+  category,
+  mainContent,
+  relatedArticles,
+  titleContents
+}) {
   const { state, dispatch } = useAppContext();
   // const router = useRouter();
-  console.log("🚀 ~ file: ContentPage.jsx:29 ~ ContentPage ~ mainContent:", mainContent)
+  console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ mainContent:", mainContent)
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ relatedArticles:", relatedArticles)
+  console.log("🚀 ~ file: ContentPage.jsx:31 ~ ContentPage ~ titleContents:", titleContents)
 
   const clientWidth = state.clientWidth
   const [item, setItem] = useState();
@@ -75,15 +81,21 @@ function ContentPage({ category, mainContent, relatedArticles, titleContents }) 
       }
     })
   }, [category]);
-  const readEditorList = useMemo(() => {
-    return titleContents.filter(content => content.hidden === false)
+
+  const filteredTitleContents = useMemo(() => {
+    return titleContents.filter(content => content.hidden === false
+      && content.categories.name.toLowerCase() !== 'uncategorized'
+      )
   }, [titleContents])
 
   useEffect(() => {
+    const filteredRelatedArticles = relatedArticles.filter(article => article.hidden === false 
+      && article.categories.name.toLowerCase() !== 'uncategorized'
+      )
     setTheContent(mainContent);
-    findOneByIdAndReturnPrevNextID(readEditorList, mainContent.serialNumber)
-    setInterestedContents(relatedArticles)
-  }, [mainContent, relatedArticles, readEditorList]);
+    findOneByIdAndReturnPrevNextID(filteredTitleContents, mainContent.serialNumber)
+    setInterestedContents(filteredRelatedArticles)
+  }, [mainContent, relatedArticles, filteredTitleContents]);
 
   useEffect(() => {
     // console.log("🚀 ~ file: ContentPage.jsx:92 ~ useEffect ~ state.lastPathname:", state.lastPathname)

@@ -14,6 +14,18 @@ const nextConfig = {
                 port    : '',
                 pathname: '/vi/**',
             },
+            {
+                protocol: 'http',
+                hostname: 'uat-apidb.zoonobet.com',
+                port    : '',
+                pathname: '/home/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'bd.zoonobet.com',
+                port    : '',
+                pathname: '/home/**',
+            },
         ]
     },
     compiler: {
