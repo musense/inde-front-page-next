@@ -20,9 +20,9 @@ export default function NavButton({ category, unCheck = null }) {
     return (
         <NavItem>
             <div
-            // href      = {`/${sitemapUrl}`}
-            onClick   = {() => clickHandler()}
-            className = {`${styles['navButton']} ${state.categoryName === categoryName ? styles['active'] : ''}`}>
+                // href      = {`/${sitemapUrl}`}
+                onClick={() => clickHandler()}
+                className={`${styles['navButton']} ${state.categoryName === categoryName ? styles['active'] : ''}`}>
                 {capitalizedCategoryName}
             </div>
         </NavItem >

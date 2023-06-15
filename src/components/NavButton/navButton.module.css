@@ -1,8 +1,9 @@
 .navButton {
-    box-sizing: border-box;
+    box-sizing     : border-box;
     text-decoration: none;
-    font-size: 23px;
-    color: var(--theme-text);
+    font-size      : 23px;
+    color          : var(--theme-text);
+    cursor: pointer;
 
 
 }

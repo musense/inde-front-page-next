@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./contentPage.module.css";
+import styles from "@components/ContentPage/contentPage.module.css";
 import NavigateContainer from "@components/NavigateContainer/NavigateContainer";
 import Image from 'next/image'
 

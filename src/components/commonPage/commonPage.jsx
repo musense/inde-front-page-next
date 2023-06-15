@@ -11,12 +11,14 @@ import { animateScroll as scroll } from "react-scroll";
 
 import { useAppContext } from '@store/context';
 
+
+const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino'];
 function CommonPage({ paramName, commonPageItems }) {
     const { state, dispatch } = useAppContext();
     // const state = useContext(MainContext);
 
     // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
-    // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
+    console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -95,8 +97,17 @@ function CommonPage({ paramName, commonPageItems }) {
     }, [paramName]);
 
     const showData = useMemo(() => {
-        return commonPageItems.filter(content => content.hidden === false)
-    }, [commonPageItems])
+        if (paramName.indexOf("#") !== -1) {
+            console.log("🚀 ~ file: commonPage.jsx:102 ~ showData ~ commonPageItems:", commonPageItems)
+            return commonPageItems.filter(content => content.hidden === false
+                && navItems.includes(content.categories.name)
+            )
+        } else {
+            return commonPageItems.filter(content => content.hidden === false
+
+            )
+        }
+    }, [commonPageItems, paramName])
 
     useEffect(() => {
 

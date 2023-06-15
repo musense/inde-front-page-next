@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import styles from './contentPage.module.css';
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
-import ContentPageLeft from './ContentPageLeft';
-import InterestedContents from '@views/index-sections/InterestedContents';
+import ContentPageLeft from '@components/ContentPageLeft/ContentPageLeft';
+import InterestedContents from '@components/InterestedContents/InterestedContents';
 import Image from 'next/image'
 
 import { animateScroll as scroll } from "react-scroll";

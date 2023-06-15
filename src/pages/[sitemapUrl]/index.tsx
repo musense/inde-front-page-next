@@ -6,7 +6,7 @@ import type {
 import { Meta } from '@layouts/Meta';
 import { Main } from '@components/Main/Main';
 import CommonPage from '@components/commonPage/commonPage';
-import ContentPage from '@views/index-sections/ContentPage';
+import ContentPage from '@components/ContentPage/ContentPage';
 
 import {
   getTitleContentsByCategory,
@@ -150,11 +150,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
   if (sitemapUrl.indexOf('c_') !== -1) {
-    categoryList = await getCategoryList(payload);
+
+    categoryList = await getCategoryList(payload)
+     
     mainContent = categoryList.find(
       (category: any) => category.sitemapUrl === sitemapUrl
     );
-
     payload = {
       ...payload,
       categoryName: mainContent.name,

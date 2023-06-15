@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './interestedContents.module.css';
-import ContentPageConnect from './ContentPageConnect';
+import ContentPageConnect from '../ContentPageConnect/ContentPageConnect';
 import { useAppContext } from '@store/context';
 
 export default function InterestedContents({ interestedContents }) {

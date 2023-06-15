@@ -24,7 +24,6 @@
       "@components/*": ["src/components/*"],
       "@assets/*"    : ["src/assets/*"],
       "@layouts/*"   : ["src/layouts/*"],
-      "@views/*"     : ["src/views/*"],
       "@pages/*"     : ["src/pages/*"],
       "@services/*"  : ["src/services/*"],
       "@hook/*"      : ["src/hook/*"],

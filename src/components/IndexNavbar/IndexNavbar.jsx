@@ -1,7 +1,6 @@
 import React, {
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -89,7 +88,14 @@ function IndexNavbar() {
     const payload = {
       apiUrl: process.env.NEXT_PUBLIC_SERVER_URL || '',
     };
-    const categoryList = await getCategoryList(payload);
+    const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino'];
+    const categoryList = await getCategoryList(payload)
+      .then((categoryList) =>
+        categoryList.filter((category) => navItems.includes(category.name))
+      );;
+    console.log("🚀 ~ file: IndexNavbar.jsx:93 ~ getNavbar ~ categoryList:", categoryList)
+
+
 
     return categoryList;
   }
@@ -201,8 +207,7 @@ function NavWrapper({
     e.stopPropagation();
   }, []);
 
-    // useEffect(() => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (navRef.current === null) {
       return;
     } else {
@@ -231,7 +236,7 @@ function NavWrapper({
         {categoryList.map((category, index) => {
           return (
             <NavButton
-              key = {index}
+              key={index}
               unCheck={unCheck}
               category={category}
             />

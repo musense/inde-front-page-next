@@ -49,9 +49,9 @@ export async function getTagContents(payload) {
     // console.log("🚀 ~ file tagContents.js:4 ~ getTagsContent ~ payload:", payload)
     const { tagName, page, apiUrl } = payload
     const response = await instance(apiUrl).get(`/tags/tagSearch/${tagName}?limit=9999&pageNumber=${page}`)
-        .then(res => res.data)
+        .then(res => res.data.data)
         // .then(res => { console.log(res); return res })
-        .then(res => res.data.filter(item => item.categories.name.toLowerCase() !== "uncategorized"))
+        // .then(res => res.data.filter(item => item.categories.name.toLowerCase() !== "uncategorized"))
         .then(tagContents => tagContents.map(content => {
             return {
                 ...content,
