@@ -5,25 +5,25 @@ const nextConfig = {
             {
                 protocol: 'http',
                 hostname: '10.88.0.106',
-                port    : '5050',
+                port: '5050',
                 pathname: '/images/**',
             },
             {
                 protocol: 'https',
                 hostname: 'i.ytimg.com',
-                port    : '',
+                port: '',
                 pathname: '/vi/**',
             },
             {
                 protocol: 'http',
                 hostname: 'uat-apidb.zoonobet.com',
-                port    : '',
+                port: '',
                 pathname: '/home/**',
             },
             {
                 protocol: 'https',
                 hostname: 'bd.zoonobet.com',
-                port    : '',
+                port: '',
                 pathname: '/home/**',
             },
         ]

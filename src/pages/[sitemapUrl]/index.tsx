@@ -68,9 +68,10 @@ const Page = ({
       <Main
         meta={
           <Meta
-            title={meta.headTitle}
-            description={meta.headDescription}
-            keywords={meta.headKeyword}
+            title       = {meta.headTitle}
+            description = {meta.headDescription}
+            keywords    = {meta.headKeyword}
+            canonical={`${process.env.NEXT_PUBLIC_SITE}/${sitemapUrl}`}
           />
         }
       >

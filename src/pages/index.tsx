@@ -10,6 +10,7 @@ const Home = () => {
           title='Zoonobet'
           description='Zoonobet'
           keywords='Zoonobet'
+          canonical={process.env.NEXT_PUBLIC_SITE}
         />
       }
     >
