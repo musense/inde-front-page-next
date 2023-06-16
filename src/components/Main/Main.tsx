@@ -8,19 +8,17 @@ type IMainProps = {
 };
 
 function Main({ meta, children }: IMainProps) {
-
   return (
-    // <Context>
-      <div className='w-full px-1 text-gray-700 antialiased'>
-        {meta}
-
-        <div className='mx-auto max-w-screen-md'>
-          <Navbar />
-          <main className='content py-5 text-xl'>{children}</main>
-          <Footer />
-        </div>
+    <div className='w-full'>
+      {meta}
+      <div className='mx-auto'>
+        <Navbar />
+        <main className='relative z-10'>
+          {children}
+        </main>
+        <Footer />
       </div>
-    // </Context>
+    </div>
   );
 }
 

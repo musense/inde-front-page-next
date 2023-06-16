@@ -1,17 +1,20 @@
 {
-    "cSpell.words": [
-        "Andar",
-        "apidb",
-        "Bahar",
-        "gameplay",
-        "gtag",
-        "inde",
-        "matka",
-        "Nextjs",
-        "Sangam",
-        "tailwindcss",
-        "ytimg",
-        "Zoobet",
-        "Zoonobet"
-    ]
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "cSpell.words": [
+    "Andar",
+    "apidb",
+    "Bahar",
+    "gameplay",
+    "gtag",
+    "inde",
+    "matka",
+    "Nextjs",
+    "Sangam",
+    "tailwindcss",
+    "ytimg",
+    "Zoobet",
+    "Zoonobet"
+  ]
 }
