@@ -12,9 +12,10 @@ function Footer() {
 
   const footerClassName = (pathname) => {
     let footerClassName
-    console.log(pathname.indexOf('/p/'));
-
-    if (pathname === "/") {
+    if (!pathname) {
+      footerClassName = "index"
+    }
+    else if (pathname === "/") {
       footerClassName = "index"
     }
     else if (pathname.startsWith('/tag_')) {
@@ -49,7 +50,7 @@ function Footer() {
     console.log("🚀 ~ file: DarkFooter.jsx:27 ~ DarkFooter ~ pathname:", pathname)
     setFooterClass(footerClassName(pathname))
     setCopyrightClass(copyrightClassName(pathname))
-  }, []);
+  }, [state.pathname]);
 
 
   console.log("🚀 ~ file: DarkFooter.jsx:27 ~ footerClassName ~ footerClass:", footerClass)
