@@ -38,6 +38,7 @@ const Page = ({
   sitemapUrl,
   meta,
 }: CategoryProps) => {
+  console.log('🚀 ~ file: index.tsx:41 ~ sitemapUrl:', sitemapUrl);
   console.log('🚀 ~ file: index.tsx:41 ~ meta:', meta);
 
   const page = sitemapUrl ? (
@@ -64,20 +65,18 @@ const Page = ({
   );
 
   return (
-    sitemapUrl && (
-      <Main
-        meta={
-          <Meta
-            title       = {meta.headTitle}
-            description = {meta.headDescription}
-            keywords    = {meta.headKeyword}
-            canonical={`${process.env.NEXT_PUBLIC_SITE}/${sitemapUrl}`}
-          />
-        }
-      >
-        {page}
-      </Main>
-    )
+    <Main
+      meta={
+        <Meta
+          title={meta.headTitle}
+          description={meta.headDescription}
+          keywords={meta.headKeyword}
+          canonical={`${process.env.NEXT_PUBLIC_SITE}/${sitemapUrl}`}
+        />
+      }
+    >
+      {page}
+    </Main>
   );
 };
 
@@ -151,9 +150,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
   if (sitemapUrl.indexOf('c_') !== -1) {
+    categoryList = await getCategoryList(payload);
 
-    categoryList = await getCategoryList(payload)
-     
     mainContent = categoryList.find(
       (category: any) => category.sitemapUrl === sitemapUrl
     );

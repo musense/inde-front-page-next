@@ -43,6 +43,7 @@ const indexViewBlockItems = [
 
 function IndexView() {
   const { state, dispatch } = useAppContext();
+  console.log("🚀 ~ file: IndexView.jsx:46 ~ IndexView ~ state:", state)
   const [categoryList, setCategoryList] = useState([]);
   async function getNavbar() {
     const payload = {
