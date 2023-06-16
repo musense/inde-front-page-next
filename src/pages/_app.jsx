@@ -1,9 +1,24 @@
 import { Context } from '@store/context';
 import '@styles/global.css';
+import { useRouter } from 'next/router';
 import Script from 'next/script';
+import { useEffect } from 'react';
 
 export default function MyApp({ Component, pageProps }) {
 
+  const router = useRouter();
+
+  useEffect(() => storePathValues, [router.asPath]);
+
+  function storePathValues() {
+    const storage = localStorage;
+    if (!storage) return;
+
+    const prevPath = storage.getItem("currentPath");
+    storage.setItem("prevPath", prevPath);
+    storage.setItem("currentPath", window.location.pathname);
+  }
+  
   return (
     <>
       <Script

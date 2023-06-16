@@ -16,25 +16,22 @@ import NavBackDrop from '@components/NavBackDrop/NavBackDrop';
 import { getCategoryList } from '@assets/js/categoryContents';
 
 import { useAppContext } from '@store/context';
-import { ReducerActionEnum } from "@store/types";
 
 import { useRouter } from 'next/router';
 
 function IndexNavbar() {
   const { state, dispatch } = useAppContext();
+  console.group("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
+  console.table(state)
+  console.groupEnd("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
   const router = useRouter();
 
   useEffect(() => {
     dispatch({
-      type: 'SET_LAST_PATHNAME',
-      payload: {
-        lastPathname: state.pathname,
-      },
-    });
-    dispatch({
       type: 'SET_PATHNAME',
       payload: {
-        pathname: router.asPath,
+        lastPathname:localStorage.getItem("prevPath"),
+        pathname: localStorage.getItem("currentPath"),
       },
     });
   }, [router.asPath, dispatch, state.pathname]);
@@ -76,12 +73,6 @@ function IndexNavbar() {
     const hamburgerCheck = hamburgerRef.current;
     hamburgerCheck.checked = false;
     setActive(false);
-    // dispatch({
-    //   type: ReducerActionEnum.SET_NAVBAR_ACTIVE_STATUS,
-    //   payload: {
-    //     active: false,
-    //   },
-    // })
   }, []);
   async function getNavbar() {
     const payload = {
@@ -135,12 +126,6 @@ function IndexNavbar() {
     const active = e?.target?.checked || false;
     console.log('Clicked, new value = ' + e.target.checked);
     setActive(active);
-    // dispatch({
-    //   type: ReducerActionEnum.SET_NAVBAR_ACTIVE_STATUS,
-    //   payload: {
-    //     active: active,
-    //   },
-    // })
   };
 
   return (

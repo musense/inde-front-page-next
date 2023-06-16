@@ -5,7 +5,6 @@ export interface StateProps {
     categoryName: string;
     pathname    : string;
     lastPathname: string;
-    active      : boolean;
 }
 
 export enum ReducerActionEnum {
@@ -14,7 +13,6 @@ export enum ReducerActionEnum {
     SET_CATEGORY_NAME          = 'SET_CATEGORY_NAME',
     SET_PATHNAME               = 'SET_PATHNAME',
     SET_LAST_PATHNAME          = 'SET_LAST_PATHNAME',
-    SET_NAVBAR_ACTIVE_STATUS = 'SET_NAVBAR_ACTIVE_TO_FALSE',
 }
 
 export type ReducerAction = {
@@ -28,5 +26,4 @@ export type payloadProps = {
     categoryName?: string ,
     pathname    ?: string ,
     lastPathname?: string ,
-    active      ?: boolean,
 }
