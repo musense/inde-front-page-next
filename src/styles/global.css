@@ -151,8 +151,9 @@ inset: 0;
 
 #category-anchor {
   position: absolute;
-  top: 251px;
-  left: 0;
+  /* top     : 251px; */
+  top     : 320px;
+  left    : 0;
 }
 
 .title {

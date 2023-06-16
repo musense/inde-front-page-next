@@ -19,12 +19,6 @@
     margin: 73px auto 0;
   }
   
-  #category-anchor {
-    position: absolute;
-    top: 398px;
-    left: 0;
-  }
-  
   .category-decoration-image-wrapper>div:first-child {
     display: block;
   }
