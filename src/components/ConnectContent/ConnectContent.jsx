@@ -6,7 +6,7 @@ import NavigateContainer from "@components/NavigateContainer/NavigateContainer";
 import Image from 'next/image'
 
 function ConnectContent({ index, content, item1 = null, category }) {
-    // console.log("🚀 ~ file ConnectContent.jsx:20 ~ ConnectContent ~ content:", content)
+    console.log("🚀 ~ file ConnectContent.jsx:20 ~ ConnectContent ~ content:", content)
 
     const imgStyle = {
         width: "100%",
@@ -25,15 +25,15 @@ function ConnectContent({ index, content, item1 = null, category }) {
             sitemapUrl={content.sitemapUrl}
         >
             <div className={styles['title-mainImage']}>
-                {content.homeImagePath !== "undefined" ?
-                    <Image
+                {content.homeImagePath !== "undefined"
+                    ? <Image
                         src={content.homeImagePath}
                         alt={content.altText || content.title}
                         width={300}
                         height={300}
                         style={imgStyle}
-                    /> :
-                    <img
+                    />
+                    : <img
                         // src={content.homeImagePath}
                         alt={content.title}
                         width={300}
