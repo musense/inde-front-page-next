@@ -25,7 +25,7 @@ function ConnectContent({ index, content, item1 = null, category }) {
             sitemapUrl={content.sitemapUrl}
         >
             <div className={styles['title-mainImage']}>
-                {content.homeImagePath !== "undefined"
+                {content.homeImagePath !== null && content.homeImagePath !== "undefined"
                     ? <Image
                         src={content.homeImagePath}
                         alt={content.altText || content.title}

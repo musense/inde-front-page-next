@@ -26,7 +26,7 @@ function ContentPageConnect({ contents }) {
             >
 
                 <div className={styles['connect-image']}>
-                    {content.homeImagePath !== "undefined"
+                    {content.homeImagePath !== null && content.homeImagePath !== "undefined"
                         ? <Image
                             src={content.homeImagePath}
                             alt={content.altText}
