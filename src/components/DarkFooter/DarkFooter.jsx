@@ -46,6 +46,7 @@ function Footer() {
   const [footerClass, setFooterClass] = useState(null);
   const [copyrightClass, setCopyrightClass] = useState(null);
   useEffect(() => {
+    if (!state && !state.pathname) return
     const pathname = state.pathname;
     console.log("🚀 ~ file: DarkFooter.jsx:27 ~ DarkFooter ~ pathname:", pathname)
     setFooterClass(footerClassName(pathname))
