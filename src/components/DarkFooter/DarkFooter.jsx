@@ -31,7 +31,10 @@ function Footer() {
   }
   const copyrightClassName = (pathname) => {
     let copyrightClassName;
-    if (pathname === "/") {
+    if (!pathname) {
+      copyrightClassName = "index"
+    }
+    else if (pathname === "/") {
       copyrightClassName = "index"
     }
     else if (pathname.startsWith('/p/')) {
