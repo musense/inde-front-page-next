@@ -7,9 +7,9 @@ const Home = () => {
     <Main
       meta={
         <Meta
-          title='Zoonobet'
-          description='Zoonobet'
-          keywords='Zoonobet'
+          title={process.env.NEXT_PUBLIC_TITLE || 'Zoonobet'}
+          description={process.env.NEXT_PUBLIC_DESCRIPTION || 'Zoonobet'}
+          keywords={process.env.NEXT_PUBLIC_KEYWORDS || 'Zoonobet'}
           canonical={process.env.NEXT_PUBLIC_SITE}
         />
       }
