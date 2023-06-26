@@ -18,6 +18,7 @@ import { getCategoryList } from '@assets/js/categoryContents';
 import { useAppContext } from '@store/context';
 
 import { useRouter } from 'next/router';
+import { AppConfig } from '@utils/AppConfig';
 
 function IndexNavbar() {
   const { state, dispatch } = useAppContext();
@@ -78,10 +79,15 @@ function IndexNavbar() {
     const payload = {
       apiUrl: process.env.NEXT_PUBLIC_SERVER_URL || '',
     };
-    const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino'];
+    const navItems = AppConfig.nav_items;
     const categoryList = await getCategoryList(payload)
       .then((categoryList) =>
-        categoryList.filter((category) => navItems.includes(category.name))
+        navItems.map(item => {
+          const category = categoryList.find(
+            (category) => category.name === item
+          );
+          return category;
+        })
       );;
     console.log("🚀 ~ file: IndexNavbar.jsx:93 ~ getNavbar ~ categoryList:", categoryList)
 
