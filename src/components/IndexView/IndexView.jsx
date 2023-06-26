@@ -12,6 +12,7 @@ import Lottery from '@assets/img/index/image_1.png';
 import Sports from '@assets/img/index/image_2.png';
 import Poker from '@assets/img/index/image_3.png';
 import Matka from '@assets/img/index/image_4.png';
+import useInitial from '@hook/useInitial';
 console.log('🚀 ~ file: IndexView.jsx:13 ~ Matka:', Matka);
 
 const indexViewBlockItems = [
@@ -43,6 +44,11 @@ const indexViewBlockItems = [
 
 function IndexView() {
   const { state, dispatch } = useAppContext();
+  useInitial({
+    state,
+    dispatch,
+    category: 'home',
+  })
   console.log("🚀 ~ file: IndexView.jsx:46 ~ IndexView ~ state:", state)
   const [categoryList, setCategoryList] = useState([]);
   async function getNavbar() {
@@ -53,6 +59,12 @@ function IndexView() {
 
     return categoryList;
   }
+
+
+
+  useEffect(() => {
+    scrollToTop(state.clientWidth);
+  }, [state.clientWidth]);
 
   useEffect(() => {
     const getNavbarAsync = async () => {
@@ -96,15 +108,6 @@ function IndexView() {
     });
   };
 
-  useEffect(() => {
-    dispatch({
-      type: 'SET_CATEGORY_NAME',
-      payload: {
-        categoryName: 'home',
-      },
-    });
-    scrollToTop(state.clientWidth);
-  }, [dispatch, state.clientWidth]);
 
   return (
     <>

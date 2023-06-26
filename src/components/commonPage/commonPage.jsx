@@ -10,11 +10,17 @@ import Banner from '@components/Banner/Banner';
 import { animateScroll as scroll } from "react-scroll";
 
 import { useAppContext } from '@store/context';
+import useInitial from '@hook/useInitial';
 
 
 const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino'];
 function CommonPage({ paramName, commonPageItems }) {
     const { state, dispatch } = useAppContext();
+    useInitial({
+        state,
+        dispatch,
+        category: paramName
+    });
     // const state = useContext(MainContext);
 
     // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
@@ -86,15 +92,6 @@ function CommonPage({ paramName, commonPageItems }) {
     const [__ALL_CONTENT__, setAllContent] = useState(null);
     // const [viewContents, setViewContents] = useState(null);
     const [totalPages, setTotalPages] = useState(1);
-
-    useEffect(() => {
-        dispatch({
-            type: 'SET_CATEGORY_NAME',
-            payload: {
-                categoryName: paramName
-            }
-        })
-    }, [paramName, dispatch]);
 
     const showData = useMemo(() => {
         if (paramName.indexOf("#") !== -1) {

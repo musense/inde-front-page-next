@@ -20,39 +20,23 @@ import { useAppContext } from '@store/context';
 import { useRouter } from 'next/router';
 import { AppConfig } from '@utils/AppConfig';
 
+import useInitial from "@hook/useInitial";
+
+
 function IndexNavbar() {
   const { state, dispatch } = useAppContext();
+  const router = useRouter();
+  useInitial({
+    state,
+    dispatch,
+    path: router.asPath
+  });
   console.group("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
   console.table(state)
   console.groupEnd("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
-  const router = useRouter();
 
-  useEffect(() => {
-    dispatch({
-      type: 'SET_PATHNAME',
-      payload: {
-        lastPathname:localStorage.getItem("prevPath"),
-        pathname: localStorage.getItem("currentPath"),
-      },
-    });
-  }, [router.asPath, dispatch, state.pathname]);
-  useEffect(() => {
-    if (state.clientWidth === 0) {
-      dispatch({
-        type: 'SET_WINDOW_SIZE',
-        payload: {
-          width:
-            window.innerWidth ||
-            document.documentElement.clientWidth ||
-            document.body.clientWidth,
-          height:
-            window.innerHeight ||
-            document.documentElement.clientHeight ||
-            document.body.clientHeight,
-        },
-      });
-    }
-  }, [dispatch, state.clientWidth]);
+
+
   const [categoryList, setCategoryList] = useState([]);
   const navRef = useRef(null);
   const hamburgerRef = useRef(null);
@@ -162,6 +146,8 @@ function IndexNavbar() {
 }
 
 export default IndexNavbar;
+
+
 
 function Header({ children }) {
   return (

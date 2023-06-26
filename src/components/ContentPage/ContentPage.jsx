@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { animateScroll as scroll } from "react-scroll";
 import { getRenamedContent } from '../../assets/js/sitemap';
 import { useAppContext } from '@store/context';
-// import { useRouter } from 'next/router';
+import useInitial from "@hook/useInitial";
 
 const mobileItem = {
   image: import('@assets/img/mobile/index/banner.png'),
@@ -29,7 +29,12 @@ function ContentPage({
   titleContents
 }) {
   const { state, dispatch } = useAppContext();
-  // const router = useRouter();
+  useInitial({
+    state,
+    dispatch,
+    category
+  });
+
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ mainContent:", mainContent)
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ relatedArticles:", relatedArticles)
   console.log("🚀 ~ file: ContentPage.jsx:31 ~ ContentPage ~ titleContents:", titleContents)
@@ -72,31 +77,7 @@ function ContentPage({
     setPrevInfo(prevInfo)
     setNextInfo(nextInfo)
   };
-  useEffect(() => {
-    if (state.clientWidth === 0) {
-      dispatch({
-        type: 'SET_WINDOW_SIZE',
-        payload: {
-          width:
-            window.innerWidth ||
-            document.documentElement.clientWidth ||
-            document.body.clientWidth,
-          height:
-            window.innerHeight ||
-            document.documentElement.clientHeight ||
-            document.body.clientHeight,
-        },
-      });
-    }
-  }, [dispatch, state.clientWidth]);
-  useEffect(() => {
-    dispatch({
-      type: 'SET_CATEGORY_NAME',
-      payload: {
-        categoryName: category
-      }
-    })
-  }, [category, dispatch]);
+
 
   const filteredTitleContents = useMemo(() => {
     return titleContents.filter(content => content.hidden === false
