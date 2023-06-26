@@ -121,6 +121,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     content = titleContents.find(
       (content: any) => content.sitemapUrl === sitemapUrl
     );
+    if (!content) {
+      return {
+        props: {
+          mainTitle: '',
+          commonPageItems: '',
+          mainContent: '',
+          relatedArticles: '',
+          titleContents: '',
+          sitemapUrl: null,
+          meta: '',
+        },
+        revalidate: 10,
+      };
+    }
     payload = {
       ...payload,
       _id: content._id,
