@@ -4,7 +4,7 @@ import styles from './commonPage.module.css';
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
 import ConnectContent from '@components/ConnectContent/ConnectContent';
 
-import PageTemplate from "@components/page/pageTemplate";
+import PageTemplate from "@components/Page/pageTemplate";
 import DecoBackground from "@components/DecoBackground/DecoBackground";
 import Banner from '@components/Banner/Banner';
 import { animateScroll as scroll } from "react-scroll";
@@ -25,6 +25,7 @@ function CommonPage({ paramName, commonPageItems }) {
 
     // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
     console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
+
 
 
     const [currentPage, setCurrentPage] = useState(1);

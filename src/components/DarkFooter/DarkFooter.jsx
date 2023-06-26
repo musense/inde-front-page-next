@@ -7,7 +7,7 @@ import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorati
 import { useAppContext } from '@store/context';
 
 function Footer() {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   // console.log("🚀 ~ file: DarkFooter.jsx:10 ~ DarkFooter ~ pathname:", pathname)
 
   const footerClassName = (pathname) => {

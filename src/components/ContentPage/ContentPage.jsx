@@ -4,9 +4,7 @@ import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorati
 import ContentPageLeft from '@components/ContentPageLeft/ContentPageLeft';
 import InterestedContents from '@components/InterestedContents/InterestedContents';
 import Image from 'next/image'
-
 import { animateScroll as scroll } from "react-scroll";
-import { getRenamedContent } from '../../assets/js/sitemap';
 import { useAppContext } from '@store/context';
 import useInitial from "@hook/useInitial";
 

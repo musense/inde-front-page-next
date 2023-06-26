@@ -5,7 +5,7 @@ import type {
 } from 'next';
 import { Meta } from '@layouts/Meta';
 import { Main } from '@components/Main/Main';
-import CommonPage from '@components/commonPage/commonPage';
+import CommonPage from '@components/CommonPage/commonPage';
 import ContentPage from '@components/ContentPage/ContentPage';
 
 import {
