@@ -59,7 +59,7 @@ function ContentPage({
     const mapContentInto = (content) => content && ({
       _id: content._id,
       category: content.categories.name,
-      sitemapUrl: getRenamedContent(content.sitemapUrl),
+      sitemapUrl: content.sitemapUrl,
       title: content.title,
     })
 
@@ -72,7 +72,23 @@ function ContentPage({
     setPrevInfo(prevInfo)
     setNextInfo(nextInfo)
   };
-
+  useEffect(() => {
+    if (state.clientWidth === 0) {
+      dispatch({
+        type: 'SET_WINDOW_SIZE',
+        payload: {
+          width:
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth,
+          height:
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.body.clientHeight,
+        },
+      });
+    }
+  }, [dispatch, state.clientWidth]);
   useEffect(() => {
     dispatch({
       type: 'SET_CATEGORY_NAME',
