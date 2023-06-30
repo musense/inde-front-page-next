@@ -1,0 +1,118 @@
+.page-wrapper {
+    position: relative;
+    margin: 0 auto;
+}
+
+.page-wrapper>div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 47px;
+    max-width: 700px;
+    width: fit-content;
+    user-select: none;
+    font-family: NotoSans-Regular;
+}
+
+.page-wrapper a,
+.page-wrapper button {
+    background-color: transparent;
+    color: var(--theme-red);
+    font-size: 41px;
+    display: block;
+    padding: unset;
+    border: unset;
+    width: 46px;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.page-wrapper a:hover,
+.page-wrapper a.active {
+    color: var(--theme-red);
+}
+
+.page-wrapper p {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--theme-red);
+    font-size: 41px;
+    margin: unset;
+    width: 46px;
+}
+
+.page-wrapper a:first-child,
+.page-wrapper button:first-child {
+    margin-right: auto;
+}
+
+.page-wrapper a:last-child,
+.page-wrapper button:last-child {
+    margin-left: auto;
+}
+
+.page-wrapper button:focus {
+    border: unset;
+    outline: unset;
+}
+
+a.active,
+button.active {
+    font-family: NotoSans-Medium;
+    font-weight: bold;
+    /* color: var(--theme-text); */
+}
+
+a.displayNone,
+button.displayNone {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+
+    .page-wrapper>div {
+        width: 60vw;
+        align-items: flex-end;
+        /* background-color: grey; */
+        gap: 0rem;
+    }
+
+    .page-wrapper a,
+    .page-wrapper button {
+        /* color: var(--theme-red); */
+        font-size: 1.5rem;
+        background-color: white;
+        line-height: 1;
+    }
+
+    .page-wrapper p {
+        width: 2rem;
+        font-size: 1rem;
+        font-family: 'Lobster-Regular';
+    }
+
+    /*
+    .page-wrapper button:first-child,
+    .page-wrapper button:last-child {
+        margin: auto;
+    }
+
+    .page-wrapper button:focus {
+        border: unset;
+        outline: unset;
+    }*/
+
+    a.active,
+    button.active {
+        font-size: 2rem;
+    }
+
+    a.displayNone,
+    button.displayNone {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
