@@ -2,44 +2,44 @@ import type {
   GetStaticProps,
   GetStaticPaths,
   InferGetStaticPropsType,
-} from 'next';
-import { Meta } from '@layouts/Meta';
-import { Main } from '@components/Main/Main';
-import CommonPage from '@components/CommonPage/commonPage';
-import ContentPage from '@components/ContentPage/ContentPage';
+} from 'next'
+import { Meta } from '@layouts/Meta'
+import { Main } from '@components/Main/Main'
+import CommonPage from '@components/CommonPage/commonPage'
+import ContentPage from '@components/ContentPage/ContentPage'
 
 import {
   getTitleContentsByCategory,
   getCategoryList,
   getCategorySitemapUrls,
-} from '@assets/js/categoryContents';
+} from '@assets/js/categoryContents'
 import {
   getCategoryInfo,
   getEditorSitemapUrls,
   getRelatedArticles,
-  getTitleContents,
-  getTitleContentsByID,
-} from '@assets/js/titleContents';
+  getPreviousAndNextPageById,
+  getMainContentBySitemapUrl,
+} from '@assets/js/titleContents'
 import {
   getTagContents,
   getTagInfo,
   getTagList,
   getTagSitemapUrls,
-} from '@assets/js/tagContents';
-import IndexView from '@components/IndexView/IndexView';
-type CategoryProps = InferGetStaticPropsType<typeof getStaticProps>;
+} from '@assets/js/tagContents'
+import IndexView from '@components/IndexView/IndexView'
+type CategoryProps = InferGetStaticPropsType<typeof getStaticProps>
 
 const Page = ({
   mainTitle,
   commonPageItems,
   mainContent,
   relatedArticles,
-  titleContents,
+  previousAndNextPage,
   sitemapUrl,
   meta,
 }: CategoryProps) => {
-  console.log('🚀 ~ file: index.tsx:41 ~ sitemapUrl:', sitemapUrl);
-  console.log('🚀 ~ file: index.tsx:41 ~ meta:', meta);
+  console.log('🚀 ~ file: index.tsx:41 ~ sitemapUrl:', sitemapUrl)
+  console.log('🚀 ~ file: index.tsx:41 ~ meta:', meta)
 
   const page = sitemapUrl ? (
     sitemapUrl.indexOf('p_') !== -1 ? (
@@ -47,7 +47,7 @@ const Page = ({
         category={mainTitle}
         mainContent={mainContent}
         relatedArticles={relatedArticles}
-        titleContents={titleContents}
+        previousAndNextPage={previousAndNextPage}
       />
     ) : sitemapUrl.indexOf('tag_') !== -1 ? (
       <CommonPage
@@ -62,7 +62,7 @@ const Page = ({
     )
   ) : (
     <IndexView />
-  );
+  )
 
   return (
     <Main
@@ -77,32 +77,32 @@ const Page = ({
     >
       {page}
     </Main>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL;
-  const sitemapUrl = params?.sitemapUrl as string;
+  const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL
+  const sitemapUrl = params?.sitemapUrl as string
   console.log(
     '🚀🚀🚀🚀🚀🚀 ~ file: index.tsx:42 ~ getStaticProps:GetStaticProps= ~ sitemapUrl:',
     sitemapUrl
-  );
+  )
   console.log(
     "🚀🚀🚀🚀🚀🚀 ~ file: index.tsx:42 ~ getStaticProps:GetStaticProps= ~ sitemapUrl.indexOf('p_'):",
     sitemapUrl.indexOf('p_')
-  );
+  )
   let payload = {
     apiUrl: apiUrl,
+    sitemapUrl: `${process.env.NEXT_PUBLIC_SITE}/${sitemapUrl}`,
     _id: null,
     page: 0,
     categoryName: '',
     tagName: '',
-  };
-  let titleContents,
-    content,
-    mainContent,
+  }
+  let mainContent,
+    previousAndNextPage,
     relatedArticles,
     categoryList,
     categoryItems,
@@ -110,122 +110,112 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     tagList,
     tagItems,
     tagInfo,
-    editorTitleList;
+    editorTitleList
 
   if (sitemapUrl.indexOf('p_') !== -1) {
-    titleContents = await getTitleContents(payload);
-    console.log(
-      '🚀 ~ file: index.tsx:115 ~ const getStaticProps:GetStaticProps= ~ titleContents:',
-      titleContents
-    );
-    content = titleContents.find(
-      (content: any) => content.sitemapUrl === sitemapUrl
-    );
-    if (!content) {
-      return {
-        props: {
-          mainTitle: '',
-          commonPageItems: '',
-          mainContent: '',
-          relatedArticles: '',
-          titleContents: '',
-          sitemapUrl: null,
-          meta: '',
-        },
-        revalidate: 10,
-      };
-    }
-    payload = {
-      ...payload,
-      _id: content._id,
-    };
-    mainContent = await getTitleContentsByID(payload);
-    mainContent = {
-      ...mainContent,
-      name: mainContent.categories.name,
-    };
+    mainContent = await getMainContentBySitemapUrl(payload)
     console.log(
       '🚀 ~ file: index.tsx:115 ~ const getStaticProps:GetStaticProps= ~ mainContent:',
       mainContent
-    );
-
-    relatedArticles = await getRelatedArticles(payload);
+    )
+    payload = {
+      ...payload,
+      _id: mainContent._id.toString(),
+    }
+    mainContent = {
+      ...mainContent,
+      name: mainContent.categories.name,
+    }
+    previousAndNextPage = await getPreviousAndNextPageById(payload)
+    console.log(
+      '🚀 ~ file: index.tsx:128 ~ constgetStaticProps:GetStaticProps= ~ previousAndNextPage:',
+      previousAndNextPage
+    )
+    relatedArticles = await getRelatedArticles(payload)
+    console.log(
+      '🚀 ~ file: index.tsx:136 ~ constgetStaticProps:GetStaticProps= ~ relatedArticles:',
+      relatedArticles
+    )
     return {
       props: {
         mainTitle: mainContent.name,
         commonPageItems: '',
         mainContent: mainContent,
+        previousAndNextPage: previousAndNextPage,
         relatedArticles: relatedArticles,
-        titleContents: titleContents,
         sitemapUrl: sitemapUrl,
-        meta: mainContent,
+        meta: {
+          headTitle: mainContent.headTitle,
+          headDescription: mainContent.headDescription,
+          headKeyword: mainContent.headKeyword,
+        },
       },
       revalidate: 10,
-    };
+    }
   }
   if (sitemapUrl.indexOf('c_') !== -1) {
-    categoryList = await getCategoryList(payload);
+    categoryList = await getCategoryList(payload)
 
     mainContent = categoryList.find(
       (category: any) => category.sitemapUrl === sitemapUrl
-    );
+    )
     payload = {
       ...payload,
       categoryName: mainContent.name,
       page: 1,
-    };
-    categoryItems = await getTitleContentsByCategory(payload);
-    categoryInfo = await getCategoryInfo(payload);
-    editorTitleList = [...categoryItems];
+    }
+    categoryItems = await getTitleContentsByCategory(payload)
+    categoryInfo = await getCategoryInfo(payload)
+    editorTitleList = [...categoryItems]
     return {
       props: {
         mainTitle: mainContent.name,
         commonPageItems: editorTitleList,
         mainContent: '',
+        previousAndNextPage: '',
         relatedArticles: '',
-        titleContents: '',
         sitemapUrl: sitemapUrl,
         meta: categoryInfo,
       },
       revalidate: 10,
-    };
+    }
   }
   if (sitemapUrl?.indexOf('tag_') !== -1) {
     payload = {
       ...payload,
       page: 1,
-    };
-    tagList = await getTagList(payload);
+    }
+    tagList = await getTagList(payload)
     console.log(
       '🚀 ~ file: index.tsx:161 ~ const getStaticProps:GetStaticProps= ~ tagList:',
       tagList
-    );
-    mainContent = tagList.find((tag: any) => tag.sitemapUrl === sitemapUrl);
+    )
+    mainContent = tagList.find((tag: any) => tag.sitemapUrl === sitemapUrl)
     console.log(
       '🚀 ~ file: index.tsx:164 ~ const getStaticProps:GetStaticProps= ~ mainContent:',
       mainContent
-    );
+    )
 
     payload = {
       ...payload,
       tagName: mainContent.name,
-    };
-    tagItems = await getTagContents(payload);
-    tagInfo = await getTagInfo(payload);
-    editorTitleList = [...tagItems];
+    }
+    tagItems = await getTagContents(payload)
+    tagInfo = await getTagInfo(payload)
+    editorTitleList = [...tagItems]
 
     return {
       props: {
         mainTitle: mainContent.name,
         commonPageItems: editorTitleList,
         mainContent: '',
+        previousAndNextPage: '',
         relatedArticles: '',
-        titleContents: '',
         sitemapUrl: sitemapUrl,
         meta: tagInfo,
       },
       revalidate: 10,
-    };
+    }
   }
 
   return {
@@ -233,38 +223,38 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       mainTitle: '',
       commonPageItems: '',
       mainContent: '',
+      previousAndNextPage: '',
       relatedArticles: '',
-      titleContents: '',
       sitemapUrl: null,
       meta: '',
     },
     revalidate: 10,
-  };
-};
+  }
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino'];
+  const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino']
   const payload = {
     apiUrl: process.env.NEXT_PUBLIC_SERVER_URL,
-  };
-  const editorPromise = getEditorSitemapUrls(payload);
-  const tagPromise = getTagSitemapUrls(payload);
-  const categoryPromise = getCategorySitemapUrls(payload);
+  }
+  const editorPromise = getEditorSitemapUrls(payload)
+  const tagPromise = getTagSitemapUrls(payload)
+  const categoryPromise = getCategorySitemapUrls(payload)
   const sitemapUrl = await Promise.all([
     editorPromise,
     categoryPromise,
     tagPromise,
-  ]).then((res) => res.flat());
+  ]).then((res) => res.flat())
   console.log(
     '🚀 ~ file: index.astro:40 ~ getStaticPaths ~ sitemapUrl:',
     sitemapUrl
-  );
+  )
   const paths = sitemapUrl.map((url) => ({
     params: { sitemapUrl: url },
-  }));
+  }))
 
   return {
     paths,
     fallback: 'blocking',
-  };
-};
+  }
+}

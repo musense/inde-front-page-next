@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styles from './contentPage.module.css';
 import IndexDecorationImage from "@components/IndexDecorationImage/IndexDecorationImage";
 import ContentPageLeft from '@components/ContentPageLeft/ContentPageLeft';
@@ -24,8 +24,10 @@ function ContentPage({
   category,
   mainContent,
   relatedArticles,
-  titleContents
+  previousAndNextPage
 }) {
+  console.log("🚀 ~ file: ContentPage.jsx:31 ~ ContentPage ~ previousAndNextPage:", previousAndNextPage)
+  const { previousEditor, nextEditor } = previousAndNextPage;
   const { state, dispatch } = useAppContext();
   useInitial({
     state,
@@ -35,7 +37,6 @@ function ContentPage({
 
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ mainContent:", mainContent)
   console.log("🚀 ~ file: ContentPage.jsx:28 ~ ContentPage ~ relatedArticles:", relatedArticles)
-  console.log("🚀 ~ file: ContentPage.jsx:31 ~ ContentPage ~ titleContents:", titleContents)
 
   const clientWidth = state.clientWidth
   const [item, setItem] = useState();
@@ -51,46 +52,14 @@ function ContentPage({
     });
   }, [clientWidth])
   const [_theContent_, setTheContent] = useState(null);
-  const [prevInfo, setPrevInfo] = useState(null);
-  const [nextInfo, setNextInfo] = useState(null);
   const [interestedContents, setInterestedContents] = useState(null);
-
-  const findOneByIdAndReturnPrevNextID = (arr = [], serialNumber = null) => {
-
-    if (arr.length === 0) return null
-    if (serialNumber === null || typeof serialNumber !== 'number') return null;
-    const mapContentInto = (content) => content && ({
-      _id: content._id,
-      category: content.categories.name,
-      sitemapUrl: content.sitemapUrl,
-      title: content.title,
-    })
-
-    const theIndex = arr.findIndex(a => a.serialNumber === serialNumber)
-    const prevContent = theIndex === arr.length - 1 ? null : arr[theIndex + 1]
-    const nextContent = theIndex === 0 ? null : arr[theIndex - 1]
-
-    const prevInfo = prevContent ? mapContentInto(prevContent) : null
-    const nextInfo = nextContent ? mapContentInto(nextContent) : null
-    setPrevInfo(prevInfo)
-    setNextInfo(nextInfo)
-  };
-
-
-  const filteredTitleContents = useMemo(() => {
-    return titleContents.filter(content => content.hidden === false
-      && content.categories.name.toLowerCase() !== 'uncategorized'
-    )
-  }, [titleContents])
 
   useEffect(() => {
     const filteredRelatedArticles = relatedArticles.filter(article => article.hidden === false
-      && article.categories.name.toLowerCase() !== 'uncategorized'
-    )
+      && article.categories.name.toLowerCase() !== 'uncategorized')
     setTheContent(mainContent);
-    findOneByIdAndReturnPrevNextID(filteredTitleContents, mainContent.serialNumber)
     setInterestedContents(filteredRelatedArticles)
-  }, [mainContent, relatedArticles, filteredTitleContents]);
+  }, [mainContent, relatedArticles]);
 
   useEffect(() => {
     // console.log("🚀 ~ file: ContentPage.jsx:92 ~ useEffect ~ state.lastPathname:", state.lastPathname)
@@ -136,8 +105,8 @@ function ContentPage({
 
       <ContentPageLeft
         content={_theContent_}
-        prevInfo={prevInfo}
-        nextInfo={nextInfo}
+        prevInfo={previousEditor}
+        nextInfo={nextEditor}
         category={category}
       />
 
