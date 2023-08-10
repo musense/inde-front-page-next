@@ -11,21 +11,16 @@ import ContentPage from '@components/ContentPage/ContentPage'
 import {
   getTitleContentsByCategory,
   getCategoryList,
-  getCategorySitemapUrls,
 } from '@assets/js/categoryContents'
 import {
   getCategoryInfo,
-  getEditorSitemapUrls,
   getRelatedArticles,
   getPreviousAndNextPageById,
   getMainContentBySitemapUrl,
 } from '@assets/js/titleContents'
-import {
-  getTagContents,
-  getTagInfo,
-  getTagList,
-  getTagSitemapUrls,
-} from '@assets/js/tagContents'
+import { getTagContents, getTagInfo, getTagList } from '@assets/js/tagContents'
+
+import { getAllSitemapUrl } from '@assets/js/sitemap'
 import IndexView from '@components/IndexView/IndexView'
 type CategoryProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -38,8 +33,8 @@ const Page = ({
   sitemapUrl,
   meta,
 }: CategoryProps) => {
-  console.log('🚀 ~ file: index.tsx:41 ~ sitemapUrl:', sitemapUrl)
-  console.log('🚀 ~ file: index.tsx:41 ~ meta:', meta)
+  // console.log('🚀 ~ file: index.tsx:41 ~ sitemapUrl:', sitemapUrl)
+  // console.log('🚀 ~ file: index.tsx:41 ~ meta:', meta)
 
   const page = sitemapUrl ? (
     sitemapUrl.indexOf('p_') !== -1 ? (
@@ -114,10 +109,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   if (sitemapUrl.indexOf('p_') !== -1) {
     mainContent = await getMainContentBySitemapUrl(payload)
-    console.log(
-      '🚀 ~ file: index.tsx:115 ~ const getStaticProps:GetStaticProps= ~ mainContent:',
-      mainContent
-    )
     payload = {
       ...payload,
       _id: mainContent._id.toString(),
@@ -127,15 +118,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       name: mainContent.categories.name,
     }
     previousAndNextPage = await getPreviousAndNextPageById(payload)
-    console.log(
-      '🚀 ~ file: index.tsx:128 ~ constgetStaticProps:GetStaticProps= ~ previousAndNextPage:',
-      previousAndNextPage
-    )
     relatedArticles = await getRelatedArticles(payload)
-    console.log(
-      '🚀 ~ file: index.tsx:136 ~ constgetStaticProps:GetStaticProps= ~ relatedArticles:',
-      relatedArticles
-    )
     return {
       props: {
         mainTitle: mainContent.name,
@@ -233,24 +216,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const navItems = ['lottery', 'sports', 'poker', 'matka', 'casino']
   const payload = {
     apiUrl: process.env.NEXT_PUBLIC_SERVER_URL,
   }
-  const editorPromise = getEditorSitemapUrls(payload)
-  const tagPromise = getTagSitemapUrls(payload)
-  const categoryPromise = getCategorySitemapUrls(payload)
-  const sitemapUrl = await Promise.all([
-    editorPromise,
-    categoryPromise,
-    tagPromise,
-  ]).then((res) => res.flat())
-  console.log(
-    '🚀 ~ file: index.astro:40 ~ getStaticPaths ~ sitemapUrl:',
-    sitemapUrl
-  )
-  const paths = sitemapUrl.map((url) => ({
-    params: { sitemapUrl: url },
+  const allSitemapUrl = await getAllSitemapUrl(payload)
+
+  const paths = allSitemapUrl.map((sitemapUrl: string) => ({
+    params: { sitemapUrl },
   }))
 
   return {

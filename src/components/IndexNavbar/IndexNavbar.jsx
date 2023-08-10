@@ -31,9 +31,9 @@ function IndexNavbar() {
     dispatch,
     path: router.asPath
   });
-  console.group("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
-  console.table(state)
-  console.groupEnd("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
+  // console.group("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
+  // console.table(state)
+  // console.groupEnd("🚀 ~ file: IndexNavbar.jsx:25 ~ IndexNavbar ~ state:")
 
 
 

@@ -24,7 +24,7 @@ function CommonPage({ paramName, commonPageItems }) {
     // const state = useContext(MainContext);
 
     // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ paramName:", paramName)
-    console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
+    // console.log("🚀 ~ file: commonPage.jsx:19 ~ CommonPage ~ commonPageItems:", commonPageItems)
 
 
 

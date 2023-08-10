@@ -117,13 +117,18 @@ export async function getTitleContents(payload) {
 export async function getEditorSitemapUrls(payload) {
   const { apiUrl } = payload
   const response = await instance(apiUrl).get(`/editor?limit=9999&pageNumber=1`)
-    .then(res => res.data.data)
+    .then(res => {
+
+      console.log("🚀 ~ file: titleContents.js:121 ~ getEditorSitemapUrls ~ res.data.data:", res.data.data)
+      return res.data.data
+    })
   //唯二不產URL的只有uncategorized && 未發布
   // .then(res => res.data.filter(item => item.categories.name.toLowerCase() !== "uncategorized"))
 
 
   const idArray = response.reduce((acc, curr) => {
-    return [...acc, getRenamedContent(curr.sitemapUrl)]
+    return [...acc, curr.sitemapUrl]
+    // return [...acc, getRenamedContent(curr.sitemapUrl)]
   }, [])
   return idArray
 }
